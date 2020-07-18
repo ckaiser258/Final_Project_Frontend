@@ -13,19 +13,17 @@ class Login extends Component {
   };
 
   handleChange = (e) => {
-      const newFields = { ...this.state.fields,
-    [e.target.name]: e.target.value }
-    this.setState({ fields: newFields })
+    const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
+    this.setState({ fields: newFields });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    api.auth.login(this.state.fields)
-    .then(res => {
-        this.props.onLogin(res)
-        // this.props.history.push('/')
-        console.log(res)
-    })
+    api.auth.login(this.state.fields).then((res) => {
+      this.props.onLogin(res);
+      // this.props.history.push('/')
+      console.log(res);
+    });
   };
 
   render() {
