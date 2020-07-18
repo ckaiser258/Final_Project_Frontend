@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import Login from "./components/Login"
+import Login from "./pages/Login"
+import NewUser from './components/NewUser'
 import { api } from './services/api'
 import Button from 'react-bootstrap/Button'
 
@@ -43,6 +44,7 @@ class App extends Component {
   render() {
   return (
     <Fragment>
+    <NewUser onCreate={this.login}/>
     <Login onLogin={this.login}/>
     <Button onClick={this.logout}>Logout</Button>
     </Fragment>

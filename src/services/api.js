@@ -33,10 +33,27 @@ const getCurrentUser = () => {
     .then(res => res.json())
 }
 
+const createUser = data => {
+    let obj = {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        username: data.username,
+        email: data.email,
+        password: data.password
+    }
+    return fetch(`${API_ROOT}/users`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({"user": obj})
+    })
+    .catch(error => alert(error.message))
+}
+
 export const api = {
     auth: {
         login,
-        getCurrentUser
+        getCurrentUser,
+        createUser
     },
     teams : {
         getTeams
