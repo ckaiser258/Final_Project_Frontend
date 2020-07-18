@@ -1,0 +1,1 @@
+//This component doubles as a team card as well as AthletesContainer since athletes are listed by team

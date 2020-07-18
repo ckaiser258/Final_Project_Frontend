@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import Login from "./pages/Login"
+import Login from "./components/Login"
 import NewUser from './components/NewUser'
 import { api } from './services/api'
 import Button from 'react-bootstrap/Button'
