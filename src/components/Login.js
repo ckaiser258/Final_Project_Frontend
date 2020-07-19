@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from 'react-bootstrap/Container'
 import { api } from "../services/api";
 
 class Login extends Component {
@@ -21,7 +22,7 @@ class Login extends Component {
     e.preventDefault();
     api.auth.login(this.state.fields).then((res) => {
       this.props.onLogin(res);
-      // this.props.history.push('/')
+      this.props.history.push('/home')
       console.log(res);
     });
   };
@@ -29,7 +30,7 @@ class Login extends Component {
   render() {
     const { fields } = this.state;
     return (
-      <div>
+      <Container style={{ width: 400 }}>
         {this.state.error ? <h1>Try again...</h1> : null}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
@@ -54,11 +55,12 @@ class Login extends Component {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" style={{marginBottom:10}}>
             Login
           </Button>
         </Form>
-      </div>
+        Don't have an account? Click here.
+        </Container>
     );
   }
 }

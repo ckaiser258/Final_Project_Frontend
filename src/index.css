@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.sidebar {
+  max-width: 240px;
+  border-right-style: 1px solid rgba(0,0,0,0.1);
+}
+
+.sidebar-subitem-text {
+  font-size: 0.8rem;
+}

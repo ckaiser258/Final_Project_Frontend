@@ -5,6 +5,8 @@ import NewUser from "./components/NewUser";
 import ProfilePage from "./components/ProfilePage";
 import { api } from "./services/api";
 import Button from "react-bootstrap/Button";
+import Sidebar from "./components/Sidebar";
+import Grid from "@material-ui/core/Grid";
 
 class App extends Component {
   state = {
@@ -54,32 +56,88 @@ class App extends Component {
     }
   }
 
+  items = [
+    { name: "home", label: "Home" },
+    {
+      name: "billing",
+      label: "Billing",
+      items: [
+        { name: "statements", label: "Statements" },
+        { name: "reports", label: "Reports" },
+      ],
+    },
+    {
+      name: "settings",
+      label: "Settings",
+      items: [
+        { name: "profile", label: "Profile" },
+        { name: "insurance", label: "Insurance" },
+        {
+          name: "notifications",
+          label: "Notifications",
+          items: [
+            { name: "email", label: "Email" },
+            {
+              name: "desktop",
+              label: "Desktop",
+              items: [
+                { name: "schedule", label: "Schedule" },
+                { name: "frequency", label: "Frequency" },
+              ],
+            },
+            { name: "sms", label: "SMS" },
+          ],
+        },
+      ],
+    },
+  ];
+
+  classes = {
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: 20,
+      textAlign: "center",
+    },
+  };
+
   render() {
     console.log(this.state.auth);
     return (
       <Fragment>
-        <Router>
-          <Route
-            exact
-            path="/create-account"
-            render={(props) => <NewUser {...props} onCreate={this.login} />}
-          />
-          <Route
-            exact
-            path="/"
-            render={(props) => <Login {...props} onLogin={this.login} />}
-          />
-          <Route
-            exact
-            path="/home"
-            render={(props) => (
-              <ProfilePage {...props} userInfo={this.state.auth.user} />
-            )}
-          />
-        </Router>
-        {this.state.auth.user.id ? (
-          <Button onClick={this.logout}>Logout</Button>
-        ) : null}
+        <div className={this.classes.root} style={{ paddingTop: 25 }}>
+          <Grid container spacing={1}>
+            <Grid container item xs={12} spacing={3}>
+            {this.state.auth.user.id ? (
+                <Sidebar items={this.items} />) : null}
+              <Router>
+                <Route
+                  exact
+                  path="/create-account"
+                  render={(props) => (
+                    <NewUser {...props} onCreate={this.login} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => <Login {...props} onLogin={this.login} />}
+                />
+                <Route
+                  exact
+                  path="/home"
+                  render={(props) => (
+                    <ProfilePage {...props} userInfo={this.state.auth.user} />
+                  )}
+                />
+              </Router>
+              </Grid>
+          </Grid>
+              {this.state.auth.user.id ? (
+                <Button onClick={this.logout}>Logout</Button>
+              ) : null}
+        </div>
       </Fragment>
     );
   }
