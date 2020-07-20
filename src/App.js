@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, NavLink } from "react-router-dom";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
 import ProfilePage from "./components/ProfilePage";
-import TeamsContainer from './containers/TeamsContainer'
+import TeamsContainer from "./containers/TeamsContainer";
 import { api } from "./services/api";
 import Button from "react-bootstrap/Button";
 import Sidebar from "./components/Sidebar";
@@ -106,36 +106,48 @@ class App extends Component {
     console.log(this.state.auth);
     return (
       <Fragment>
-        <div className={this.classes.root} style={{ paddingTop: 25, display: "grid", gridTemplateColumns: "1fr 4fr", gridGap: 10 }}>
+        <div
+          className={this.classes.root}
+          style={{
+            paddingTop: 25,
+            display: "grid",
+            gridTemplateColumns: "1fr 4fr",
+            gridGap: 10,
+          }}
+        >
+          {this.state.auth.user.id ? <Sidebar items={this.items} /> : null}
+          <Router>
+            <Route
+              exact
+              path="/create-account"
+              render={(props) => <NewUser {...props} onCreate={this.login} />}
+            />
+            <Route
+              exact
+              path="/"
+              render={(props) => <Login {...props} onLogin={this.login} />}
+            />
+            <Route
+              exact
+              path="/home"
+              render={(props) => (
+                <ProfilePage {...props} userInfo={this.state.auth.user} />
+              )}
+            />
+            <Route
+              path="/teams"
+              render={(props) => (
+                <TeamsContainer {...props} userId={this.state.auth.user.id} />
+              )}
+            />
             {this.state.auth.user.id ? (
-                <Sidebar items={this.items} />) : null}
-              <Router>
-                <Route
-                  exact
-                  path="/create-account"
-                  render={(props) => (
-                    <NewUser {...props} onCreate={this.login} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => <Login {...props} onLogin={this.login} />}
-                />
-                <Route
-                  exact
-                  path="/home"
-                  render={(props) => (
-                    <ProfilePage {...props} userInfo={this.state.auth.user} />
-                  )}
-                />
-                <Route path="/teams" render={(props => <TeamsContainer {...props} userId={this.state.auth.user.id}/>
-                )}
-                />
-              </Router>
-              {this.state.auth.user.id ? (
-                <div><Button onClick={this.logout}>Logout</Button></div>
-              ) : null}
+              <div>
+                <NavLink to="/" exact>
+                  <Button onClick={this.logout}>Logout</Button>
+                </NavLink>
+              </div>
+            ) : null}
+          </Router>
         </div>
       </Fragment>
     );

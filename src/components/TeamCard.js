@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
+import TeamProfile from "./TeamProfile"
 import {
   Card,
   CardActionArea,
@@ -17,6 +18,7 @@ const handleImageError = (e) => {
 
 const TeamCard = (props) => {
   return props.teamInfo.user_id === props.userId ? (
+    <Fragment>
     <div style={{ paddingTop: 50 }}>
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
@@ -43,7 +45,8 @@ const TeamCard = (props) => {
         </Grid>
       </Grid>
     </div>
-  ) : null;
+    <TeamProfile team={props.teamInfo}/>
+    </Fragment>) : null;
 };
 
 export default TeamCard;
