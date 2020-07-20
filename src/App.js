@@ -7,7 +7,6 @@ import TeamsContainer from './containers/TeamsContainer'
 import { api } from "./services/api";
 import Button from "react-bootstrap/Button";
 import Sidebar from "./components/Sidebar";
-import Grid from "@material-ui/core/Grid";
 
 class App extends Component {
   state = {
@@ -107,9 +106,7 @@ class App extends Component {
     console.log(this.state.auth);
     return (
       <Fragment>
-        <div className={this.classes.root} style={{ paddingTop: 25 }}>
-          {/* <Grid container spacing={1}>
-            <Grid container item xs={12} spacing={3}> */}
+        <div className={this.classes.root} style={{ paddingTop: 25, display: "grid", gridTemplateColumns: "1fr 4fr", gridGap: 10 }}>
             {this.state.auth.user.id ? (
                 <Sidebar items={this.items} />) : null}
               <Router>
@@ -132,14 +129,12 @@ class App extends Component {
                     <ProfilePage {...props} userInfo={this.state.auth.user} />
                   )}
                 />
-                <Route exact path="/teams" render={(props => <TeamsContainer {...props} userId={this.state.auth.user.id}/>
+                <Route path="/teams" render={(props => <TeamsContainer {...props} userId={this.state.auth.user.id}/>
                 )}
                 />
               </Router>
-              {/* </Grid>
-          </Grid> */}
               {this.state.auth.user.id ? (
-                <Button onClick={this.logout}>Logout</Button>
+                <div><Button onClick={this.logout}>Logout</Button></div>
               ) : null}
         </div>
       </Fragment>
