@@ -27,7 +27,7 @@ class NewTeamForm extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginLeft: 200, marginTop: 20}}>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>
