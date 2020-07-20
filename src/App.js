@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
 import ProfilePage from "./components/ProfilePage";
+import TeamsContainer from './containers/TeamsContainer'
 import { api } from "./services/api";
 import Button from "react-bootstrap/Button";
 import Sidebar from "./components/Sidebar";
@@ -107,8 +108,8 @@ class App extends Component {
     return (
       <Fragment>
         <div className={this.classes.root} style={{ paddingTop: 25 }}>
-          <Grid container spacing={1}>
-            <Grid container item xs={12} spacing={3}>
+          {/* <Grid container spacing={1}>
+            <Grid container item xs={12} spacing={3}> */}
             {this.state.auth.user.id ? (
                 <Sidebar items={this.items} />) : null}
               <Router>
@@ -131,9 +132,12 @@ class App extends Component {
                     <ProfilePage {...props} userInfo={this.state.auth.user} />
                   )}
                 />
+                <Route exact path="/teams" render={(props => <TeamsContainer {...props} userId={this.state.auth.user.id}/>
+                )}
+                />
               </Router>
-              </Grid>
-          </Grid>
+              {/* </Grid>
+          </Grid> */}
               {this.state.auth.user.id ? (
                 <Button onClick={this.logout}>Logout</Button>
               ) : null}
