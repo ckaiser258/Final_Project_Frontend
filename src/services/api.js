@@ -14,7 +14,7 @@ const getTeams = () => {
     return fetch(`${API_ROOT}/teams/`, {
         headers: headers()
     })
-    .then(res => res.json)
+    .then(res => res.json())
 }
 
 const login = data => {
@@ -49,6 +49,15 @@ const createUser = data => {
     .catch(error => alert(error.message))
 }
 
+const createTeam = (data) => {
+    return fetch(`${API_ROOT}/teams`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({"team": data})
+    })
+    .catch(error => alert(error.message))
+}
+
 export const api = {
     auth: {
         login,
@@ -56,6 +65,7 @@ export const api = {
         createUser
     },
     teams : {
-        getTeams
+        getTeams,
+        createTeam
     }
 }
