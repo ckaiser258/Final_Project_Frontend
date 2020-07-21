@@ -13,6 +13,7 @@ class App extends Component {
     auth: {
       user: {},
     },
+    teams: []
   };
 
   login = (data) => {
@@ -53,8 +54,19 @@ class App extends Component {
           },
         });
       });
+      api.teams.getTeams().then((data => {
+        this.setState({
+          teams: data.filter(team => {
+            return team.user_id === this.state.auth.user.id
+          })
+        })
+      }))
     }
   }
+
+  // addTeam = (team) => {
+  //   this.setState({...this.state.teams, team})
+  // }
 
   items = [
     { name: "home", label: "Home" },
@@ -137,7 +149,7 @@ class App extends Component {
             <Route
               path="/teams"
               render={(props) => (
-                <TeamsContainer {...props} userId={this.state.auth.user.id} />
+                <TeamsContainer {...props} userId={this.state.auth.user.id} teams={this.state.teams} addTeam={this.addTeam} />
               )}
             />
             {this.state.auth.user.id ? (

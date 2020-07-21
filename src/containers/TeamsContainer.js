@@ -7,26 +7,11 @@ import { Route, NavLink } from "react-router-dom";
 import { Card, CardMedia, CardActionArea, Typography, Grid } from "@material-ui/core";
 
 class TeamsContainer extends Component {
-  state = {
-    teams: [], //take out state here and pass props from app instead with teams fetch call in app
-  };
-
-  componentDidMount() {
-    api.teams.getTeams().then((data) => {
-      this.setState({
-        teams: data,
-      });
-    });
-  }
-
-  addTeam = (team) => {
-    this.setState({...this.state.teams, team})
-  } //not working
 
   render() {
     return (
       <div style={{display: "grid", gridTemplateColumns: "4fr 4fr 4fr", gridGap: 10, paddingRight: 40 }}>
-        {this.state.teams.map((team) => {
+        {this.props.teams.map((team) => {
           return <TeamCard key={team.id} teamInfo={team} userId={this.props.userId} />;
         })}
             <div style={{ paddingTop: 50 }}>
@@ -47,8 +32,8 @@ class TeamsContainer extends Component {
         </Grid>
         </Grid>
         </div>
-          <Route path="/teams/create-team" render={(props => <NewTeamForm {...props} userId={this.props.userId} addTeam={this.addTeam}/>)}/>
-          <Route path={`${this.props.match.url}/:teamId`} render={props => <TeamProfile {...props} teams={this.state.teams}/>}/>
+          <Route path="/teams/create-team" render={(props => <NewTeamForm {...props} userId={this.props.userId} addTeam={this.props.addTeam}/>)}/>
+          <Route path={`${this.props.match.url}/:teamId`} render={props => <TeamProfile {...props} teams={this.props.teams}/>}/>
       </div>
     );
   }
