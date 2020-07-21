@@ -7,6 +7,7 @@ import TeamsContainer from "./containers/TeamsContainer";
 import { api } from "./services/api";
 import Button from "react-bootstrap/Button";
 import Sidebar from "./components/Sidebar";
+import TeamProfile from "./components/TeamProfile";
 
 class App extends Component {
   state = {
@@ -147,11 +148,16 @@ class App extends Component {
               )}
             />
             <Route
-              path="/teams"
+              exact path="/teams"
               render={(props) => (
                 <TeamsContainer {...props} userId={this.state.auth.user.id} teams={this.state.teams} addTeam={this.addTeam} />
               )}
             />
+            {this.state.teams.map(team => {
+              return <Route key={team.id} exact path={`/teams/${team.id}`}
+              render={(props) => (
+                <TeamProfile {...props} teamInfo={team}/>)}
+              />})}
             {this.state.auth.user.id ? (
               <div>
                 <NavLink to="/" exact>

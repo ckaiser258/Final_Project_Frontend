@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import TeamProfile from "./TeamProfile"
 import { Link } from 'react-router-dom'
 import {
   Card,
@@ -50,7 +49,6 @@ const TeamCard = (props) => {
         </Grid>
       </Grid>
     </div>
-    {/* <TeamProfile team={props.teamInfo}/> */}
     </Fragment>) : null;
 };
 

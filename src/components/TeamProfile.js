@@ -8,13 +8,6 @@ class TeamProfile extends Component {
     athletes: [],
   };
 
-  thisTeam = () => { 
-      let currentTeam = this.props.teams.filter(team => {
-          return team.id == this.props.match.params.teamId
-      })
-      console.log(currentTeam, this.props.match.params.teamId)
-    return currentTeam}
-
   fetchAthletes = () => {
     return api.athletes.getAthletes().then((data) => {
       this.setState({
@@ -26,12 +19,11 @@ class TeamProfile extends Component {
   };
 
   componentDidMount() {
-    this.fetchAthletes()
+    this.fetchAthletes();
   }
   render() {
-    this.thisTeam()
-    return(<h4>{ this.props.teams[0] && this.thisTeam()[0].name }</h4>)
-    // <div>{this.props.team.name}</div>)
+    console.log(this.props.teamInfo && this.props.teamInfo.name);
+    return <h4>{this.props.teamInfo && this.props.teamInfo.name}</h4>;
   }
 }
 
