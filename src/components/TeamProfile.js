@@ -4,7 +4,6 @@ import React, { Component, Fragment } from "react";
 import AthleteCard from "./AthleteCard";
 import { Route, NavLink } from "react-router-dom";
 import NewAthleteForm from "./forms/NewAthleteForm";
-import { api } from "../services/api";
 import { Card, CardMedia, CardActionArea, Grid } from "@material-ui/core";
 
 class TeamProfile extends Component {

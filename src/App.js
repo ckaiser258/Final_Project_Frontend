@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Route, BrowserRouter as Router, NavLink } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
 import ProfilePage from "./components/ProfilePage";
@@ -136,7 +136,7 @@ class App extends Component {
             <Navbar.Brand href={this.state.auth.user.id ? "/home" : "/"}>Performance Mapper</Navbar.Brand>     
             {this.state.auth.user.id ? (
               <div style={{position: "absolute", right: "45px"}}>
-                  <Button size="sm" href="/" exact variant="outline-primary" onClick={this.logout}>Logout</Button>
+                  <Button size="sm" href="/" variant="outline-primary" onClick={this.logout}>Logout</Button>
                 </div>
             ) : null}
           </Navbar>
@@ -186,14 +186,6 @@ class App extends Component {
                 render={(props) => (
                 <AthleteProfile {...props}  athleteInfo={athlete}/>)}
               />})}
-
-            {this.state.auth.user.id ? (
-              <div>
-                <NavLink to="/" exact>
-                  <Button onClick={this.logout}>Logout</Button>
-                </NavLink>
-              </div>
-            ) : null}
           </Router>
         </div>
       </Fragment>
