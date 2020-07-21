@@ -4,17 +4,19 @@ import Login from "./components/Login";
 import NewUser from "./components/NewUser";
 import ProfilePage from "./components/ProfilePage";
 import TeamsContainer from "./containers/TeamsContainer";
-import { api } from "./services/api";
-import Button from "react-bootstrap/Button";
-import Sidebar from "./components/Sidebar";
 import TeamProfile from "./components/TeamProfile";
+import AthleteProfile from "./components/AthleteProfile"
+import Sidebar from "./components/Sidebar";
+import { api } from "./services/api";
+import { Navbar, Button } from "react-bootstrap";
 
 class App extends Component {
   state = {
     auth: {
       user: {},
     },
-    teams: []
+    teams: [],
+    athletes: []
   };
 
   login = (data) => {
@@ -61,12 +63,23 @@ class App extends Component {
             return team.user_id === this.state.auth.user.id
           })
         })
-      }))
+      }));
+      api.athletes.getAthletes().then((data => {
+        this.setState({
+          athletes: data.filter(athlete => {
+            return athlete.user_id === this.state.auth.user.id
+          })
+        })
+      }));
     }
   }
 
   // addTeam = (team) => {
   //   this.setState({...this.state.teams, team})
+  // }
+
+    // addAthlete = (athlete) => {
+  //   this.setState({...this.state.athletes, athlete})
   // }
 
   items = [
@@ -116,9 +129,18 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.auth);
     return (
       <Fragment>
+        <div >
+          <Navbar bg="light">
+            <Navbar.Brand href={this.state.auth.user.id ? "/home" : "/"}>Performance Mapper</Navbar.Brand>     
+            {this.state.auth.user.id ? (
+              <div style={{position: "absolute", right: "45px"}}>
+                  <Button size="sm" href="/" exact variant="outline-primary" onClick={this.logout}>Logout</Button>
+                </div>
+            ) : null}
+          </Navbar>
+        </div>
         <div
           className={this.classes.root}
           style={{
@@ -156,8 +178,15 @@ class App extends Component {
             {this.state.teams.map(team => {
               return <Route key={team.id} path={`/team/${team.id}`}
               render={(props) => (
-                <TeamProfile {...props} userId={this.state.auth.user.id} teamInfo={team}/>)}
+                <TeamProfile {...props} userId={this.state.auth.user.id} teamInfo={team} addTeam={this.addTeam} athletes={this.state.athletes}/>)}
               />})}
+            {this.state.athletes.map(athlete => {
+              const athleteUrl = `${athlete.first_name.replace(/\s+/g, '-').toLowerCase()}-${athlete.last_name.replace(/\s+/g, '-').toLowerCase()}`
+                return <Route key={athlete.id} path={`/${athlete.id}/${athleteUrl}`} exact
+                render={(props) => (
+                <AthleteProfile {...props}  athleteInfo={athlete}/>)}
+              />})}
+
             {this.state.auth.user.id ? (
               <div>
                 <NavLink to="/" exact>
