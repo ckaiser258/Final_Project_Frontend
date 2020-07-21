@@ -23,7 +23,7 @@ const TeamCard = (props) => {
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           <Card style={{ maxWidth: 345 }}>
-            <Link key={props.teamInfo.id} to={`/teams/${props.teamInfo.id}`}>
+            <Link key={props.teamInfo.id} to={`/team/${props.teamInfo.id}`}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -40,7 +40,7 @@ const TeamCard = (props) => {
               </Typography>
 
               <CardActions>
-              <Link key={props.teamInfo.id} to={`/teams/${props.teamInfo.id}`}>
+              <Link key={props.teamInfo.id} to={`/team/${props.teamInfo.id}`}>
                 <Button>View Team</Button>
                 </Link>
               </CardActions>

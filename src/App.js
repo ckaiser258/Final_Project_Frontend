@@ -148,15 +148,15 @@ class App extends Component {
               )}
             />
             <Route
-              exact path="/teams"
+              path="/teams"
               render={(props) => (
                 <TeamsContainer {...props} userId={this.state.auth.user.id} teams={this.state.teams} addTeam={this.addTeam} />
               )}
             />
             {this.state.teams.map(team => {
-              return <Route key={team.id} exact path={`/teams/${team.id}`}
+              return <Route key={team.id} path={`/team/${team.id}`}
               render={(props) => (
-                <TeamProfile {...props} teamInfo={team}/>)}
+                <TeamProfile {...props} userId={this.state.auth.user.id} teamInfo={team}/>)}
               />})}
             {this.state.auth.user.id ? (
               <div>
