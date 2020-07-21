@@ -18,7 +18,7 @@ const getTeams = () => {
 }
 
 const getAthletes = () => {
-    return fetch(`${API_ROOT}/athletes`, {
+    return fetch(`${API_ROOT}/athletes/`, {
         headers: headers()
     })
     .then (res => res.json())

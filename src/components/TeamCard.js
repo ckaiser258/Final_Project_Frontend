@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import TeamProfile from "./TeamProfile"
+import { Link } from 'react-router-dom'
 import {
   Card,
   CardActionArea,
@@ -23,6 +24,7 @@ const TeamCard = (props) => {
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           <Card style={{ maxWidth: 345 }}>
+            <Link key={props.teamInfo.id} to={`/teams/${props.teamInfo.id}`}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -32,20 +34,23 @@ const TeamCard = (props) => {
                 onError={handleImageError}
               />
             </CardActionArea>
+            </Link>
             <CardContent>
               <Typography gutterBottom variant="h4" component="h2">
                 {props.teamInfo.name}
               </Typography>
 
               <CardActions>
+              <Link key={props.teamInfo.id} to={`/teams/${props.teamInfo.id}`}>
                 <Button>View Team</Button>
+                </Link>
               </CardActions>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
     </div>
-    <TeamProfile team={props.teamInfo}/>
+    {/* <TeamProfile team={props.teamInfo}/> */}
     </Fragment>) : null;
 };
 

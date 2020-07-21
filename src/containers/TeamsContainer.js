@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import TeamCard from "../components/TeamCard";
+import TeamProfile from "../components/TeamProfile"
 import NewTeamForm from "../components/forms/NewTeamForm";
 import { api } from "../services/api";
 import { Route, NavLink } from "react-router-dom";
@@ -7,7 +8,7 @@ import { Card, CardMedia, CardActionArea, Typography, Grid } from "@material-ui/
 
 class TeamsContainer extends Component {
   state = {
-    teams: [],
+    teams: [], //take out state here and pass props from app instead with teams fetch call in app
   };
 
   componentDidMount() {
@@ -47,6 +48,7 @@ class TeamsContainer extends Component {
         </Grid>
         </div>
           <Route path="/teams/create-team" render={(props => <NewTeamForm {...props} userId={this.props.userId} addTeam={this.addTeam}/>)}/>
+          <Route path={`${this.props.match.url}/:teamId`} render={props => <TeamProfile {...props} teams={this.state.teams}/>}/>
       </div>
     );
   }
