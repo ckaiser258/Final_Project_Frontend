@@ -65,6 +65,15 @@ const createTeam = (data) => {
     .catch(error => alert(error.message))
 }
 
+const createAthlete = (data) => {
+    return fetch(`${API_ROOT}/athletes`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({"athlete": data})
+    })
+    .catch(error => alert(error.message))
+}
+
 export const api = {
     auth: {
         login,
@@ -76,6 +85,7 @@ export const api = {
         createTeam
     },
     athletes : {
-        getAthletes
+        getAthletes,
+        createAthlete
     }
 }
