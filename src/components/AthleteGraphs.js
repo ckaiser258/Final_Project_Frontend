@@ -2,17 +2,29 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 
 const AthleteGraphs = (props) => {
+
+      //Sort dates in ascending order (Since they're strings not date-time objects)
+
     let dates = props.currentTests.map(test => {
         return test.date
     })
+
+    let reversDateRepresentation = date => {
+        let parts = date.split('/')
+        return `${parts[2]}/${parts[1]}/${parts[0]}`
+    }
+
+    let sortedDates = 
+    dates.map(reversDateRepresentation)
+    .sort()
+    .map(reversDateRepresentation)
+
+
    
   return (
-      console.log(dates),
     <Line 
       data={{
-        labels: props.currentTests.map((test) => {
-          return test.date;
-        }),
+        labels: sortedDates,
         datasets: [
           {
             label: "Result",

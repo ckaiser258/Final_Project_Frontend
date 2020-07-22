@@ -22,11 +22,6 @@ const AthleteProfile = (props) => {
   //     })
   // })
 
-  //Sort dates in ascending order (Since they're strings not date-time objects)
-
-
-
-
 
   let uniqueTestNames = stats
     .map((stat) => stat.test_name)
@@ -35,7 +30,6 @@ const AthleteProfile = (props) => {
 
   return (
     <Fragment>
-        {console.log(statsDates)}
       <div className="text-center" style={{ paddingRight: 100 }}>
         <Jumbotron>
           <Typography gutterBottom variant="h2" component="h4">
