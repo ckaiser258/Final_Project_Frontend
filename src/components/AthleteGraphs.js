@@ -9,18 +9,16 @@ const AthleteGraphs = (props) => {
         return test.date
     })
 
-    let reversDateRepresentation = date => {
+    let reverseDateRepresentation = date => {
         let parts = date.split('/')
         return `${parts[2]}/${parts[1]}/${parts[0]}`
     }
 
     let sortedDates = 
-    dates.map(reversDateRepresentation)
+    dates.map(reverseDateRepresentation)
     .sort()
-    .map(reversDateRepresentation)
+    .map(reverseDateRepresentation)
 
-
-   
   return (
     <Line 
       data={{

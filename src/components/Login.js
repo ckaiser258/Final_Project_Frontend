@@ -1,9 +1,11 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom"
+import React, { Component, Fragment } from "react";
+import { api } from "../services/api";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from 'react-bootstrap/Container'
-import { api } from "../services/api";
+import Container from "react-bootstrap/Container";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Typography from "@material-ui/core/Typography";
 
 class Login extends Component {
   state = {
@@ -23,7 +25,7 @@ class Login extends Component {
     e.preventDefault();
     api.auth.login(this.state.fields).then((res) => {
       this.props.onLogin(res);
-      this.props.history.push('/home')
+      this.props.history.push("/home");
       console.log(res);
     });
   };
@@ -31,7 +33,17 @@ class Login extends Component {
   render() {
     const { fields } = this.state;
     return (
-      <Container style={{ width: 400 }}>
+    //   <Fragment>
+    //     <div>
+    //   <Jumbotron>
+    //   <Typography gutterBottom variant="h2" component="h4">
+    //     Welcome to Performance Mapper
+    //   </Typography>
+    // </Jumbotron>
+    // </div>
+      <Container
+        style={{ width: 400, position: "absolute", left: "525px", top: 200 }}
+      >
         {this.state.error ? <h1>Try again...</h1> : null}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
@@ -56,12 +68,13 @@ class Login extends Component {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit" style={{marginBottom:10}}>
+          <Button variant="primary" type="submit" style={{ marginBottom: 10 }}>
             Login
           </Button>
         </Form>
         Don't have an account? <Link to="/create-account">Click here.</Link>
-        </Container>
+      </Container>
+      // </Fragment>
     );
   }
 }
