@@ -12,6 +12,7 @@ import {
 class TeamsContainer extends Component {
   render() {
     return (
+      <div>
       <div
         style={{
           display: "grid",
@@ -29,6 +30,7 @@ class TeamsContainer extends Component {
             />
           );
         })}
+        </div>
         <div style={{ paddingTop: 50 }}>
           <Grid container spacing={1}>
             <Grid container item xs={12} spacing={3}>

@@ -21,7 +21,7 @@ class NewTeamForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addTeam(this.state) //not working
+        // this.props.addTeam(this.state) //not working
         api.teams.createTeam(this.state)
     }
 

@@ -178,7 +178,7 @@ class App extends Component {
             {this.state.teams.map(team => {
               return <Route key={team.id} path={`/team/${team.id}`}
               render={(props) => (
-                <TeamProfile {...props} userId={this.state.auth.user.id} teamInfo={team} addTeam={this.addTeam} athletes={this.state.athletes}/>)}
+                <TeamProfile {...props} userId={this.state.auth.user.id} teamInfo={team} addTeam={this.addTeam} athletes={team.athletes}/>)}
               />})}
             {this.state.athletes.map(athlete => {
               const athleteUrl = `${athlete.first_name.replace(/\s+/g, '-').toLowerCase()}-${athlete.last_name.replace(/\s+/g, '-').toLowerCase()}`
