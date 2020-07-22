@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { api } from "../services/api";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 
 class CreateAccount extends Component {
   state = {
@@ -26,7 +26,7 @@ class CreateAccount extends Component {
       .createUser(this.state.fields)
       .then((res) => {
         this.props.onCreate(res);
-        // this.props.history.push('/')
+        this.props.history.push('/home')
         console.log(res);
       })
       .catch((error) => alert(error.message));

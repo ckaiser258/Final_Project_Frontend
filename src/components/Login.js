@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from 'react-bootstrap/Container'
@@ -59,7 +60,7 @@ class Login extends Component {
             Login
           </Button>
         </Form>
-        Don't have an account? Click here.
+        Don't have an account? <Link to="/create-account">Click here.</Link>
         </Container>
     );
   }
