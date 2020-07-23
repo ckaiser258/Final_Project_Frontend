@@ -74,6 +74,24 @@ const createAthlete = (data) => {
     .catch(error => alert(error.message))
 }
 
+const createStat = (data) => {
+    return fetch(`${API_ROOT}/stats`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({"stat": data})
+    })
+    .catch(error => alert(error.message))
+}
+
+const createInjury = (data) => {
+    return fetch(`${API_ROOT}/injuries`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({"injury": data})
+    })
+    .catch(error => alert(error.message))
+}
+
 export const api = {
     auth: {
         login,
@@ -87,5 +105,9 @@ export const api = {
     athletes : {
         getAthletes,
         createAthlete
+    },
+    performance: {
+        createStat,
+        createInjury
     }
 }

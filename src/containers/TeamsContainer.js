@@ -32,7 +32,7 @@ class TeamsContainer extends Component {
             <Grid container item xs={12} spacing={3}>
               <NavLink to="/teams/create-team" exact>
                 <Paper elevation={3} style={{borderRadius: "50%", margin: 50, marginTop: 100}} >
-                  <img style={{maxWidth: 200, maxHeight: 225, borderRadius: 100}}src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"/>
+                  <img style={{maxWidth: 200, maxHeight: 225, borderRadius: 100}}src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png" alt="Plus Sign"/>
                 </Paper>
               </NavLink>
             </Grid>

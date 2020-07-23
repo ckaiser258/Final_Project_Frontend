@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import AthletePerformanceGraph from "./Graphs.js/AthletePerformanceGraph";
 import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
+import NewStatForm from "./forms/NewStatForm";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import Typography from "@material-ui/core/Typography";
@@ -10,7 +11,9 @@ class AthleteProfile extends Component {
   state = {
     currentStatInd: 0,
     stats: this.props.athleteInfo.stats,
-    injuries: this.props.athleteInfo.injuries
+    injuries: this.props.athleteInfo.injuries,
+    statFormShowing: false,
+    injuryFormShowing: false
   };
 
   updateCurrentStatInd = (index) => {
@@ -23,19 +26,38 @@ class AthleteProfile extends Component {
     return stat.date;
   });
 
-    // addStat = (stat) => {
+  // addStat = (stat) => {
   //   this.setState({...this.state.stats, stat})
   // }
 
-      // addInjury = (injury) => {
+  // addInjury = (injury) => {
   //   this.setState({...this.state.injuries, injury})
   // }
+
+  toggleStatForm = () => {
+      this.state.statFormShowing === false ? 
+      this.setState({
+          ...this.state,
+          statFormShowing: true
+      })
+      :
+      this.setState({
+        ...this.state,
+        statFormShowing: false
+    })
+  }
 
   uniqueTestNames = this.stats
     .map((stat) => stat.test_name)
     .filter((value, index, self) => self.indexOf(value) === index);
 
   injuries = this.props.athleteInfo.injuries;
+
+  athleteUrl = `${this.props.athleteInfo.first_name
+    .replace(/\s+/g, "-")
+    .toLowerCase()}-${this.props.athleteInfo.last_name
+    .replace(/\s+/g, "-")
+    .toLowerCase()}`;
 
   render() {
     return (
@@ -92,8 +114,14 @@ class AthleteProfile extends Component {
               addStat={this.addStat}
               testName={this.uniqueTestNames[this.state.currentStatInd]}
               athlete={this.props.athleteInfo}
+              toggleStatForm={this.toggleStatForm}
             />
             <AthleteInjuryGraph injuries={this.injuries} />
+            {this.state.statFormShowing === true ? <NewStatForm
+                  athlete={this.props.athleteInfo}
+                  testNames={this.uniqueTestNames}
+                  toggleStatForm={this.toggleStatForm}
+                /> : null}
           </Container>
         </div>
       </div>

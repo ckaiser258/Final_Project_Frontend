@@ -182,7 +182,7 @@ class App extends Component {
               />})}
             {this.state.athletes.map(athlete => {
               const athleteUrl = `${athlete.first_name.replace(/\s+/g, '-').toLowerCase()}-${athlete.last_name.replace(/\s+/g, '-').toLowerCase()}`
-                return <Route key={athlete.id} path={`/${athlete.id}/${athleteUrl}`} exact
+                return <Route key={athlete.id} path={`/${athlete.id}/${athleteUrl}`}
                 render={(props) => (
                 <AthleteProfile {...props}  athleteInfo={athlete}/>)}
               />})}

@@ -34,6 +34,7 @@ class TeamProfile extends Component {
                   <img
                     style={{ maxWidth: 170, maxHeight: 195, borderRadius: 100 }}
                     src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
+                    alt="Plus Sign"
                   />
                 </Paper>
               </NavLink>

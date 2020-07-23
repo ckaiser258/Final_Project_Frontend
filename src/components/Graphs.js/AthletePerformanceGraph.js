@@ -3,21 +3,22 @@ import { Line } from "react-chartjs-2";
 import Button from "react-bootstrap/Button"
 
 const AthletePerformanceGraph = (props) => {
-  //Sort dates in ascending order (Since they're strings not date-time objects)
+
+    //Sort dates in ascending order (Since they're strings not date-time objects)
 
   let performanceDates = props.currentTests.map((test) => {
     return test.date;
   });
 
   let reverseDateRepresentation = (date) => {
-    let parts = date.split("/");
-    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    let parts = date.split("-");
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
   };
 
   let sortedPerformanceDates = performanceDates
     .map(reverseDateRepresentation)
     .sort()
-    .map(reverseDateRepresentation);
+    .map(reverseDateRepresentation)
 
   let performanceData = {
     labels: sortedPerformanceDates,
@@ -57,7 +58,7 @@ const AthletePerformanceGraph = (props) => {
         }}
       />
     </div>
-    <Button>Hello</Button>
+    <Button onClick={props.toggleStatForm}>Add Stat</Button>
     </Fragment>
   );
 };
