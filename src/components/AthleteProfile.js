@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import AthleteGraphs from "./AthleteGraphs";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from 'react-bootstrap/Container'
 import Typography from "@material-ui/core/Typography";
 
 class AthleteProfile extends Component {
@@ -34,11 +36,16 @@ class AthleteProfile extends Component {
             </Typography>
           </Jumbotron>
           <div>
+          <ul className="nav nav-tabs">
+            <li  className="nav-item"> <a   className="nav-link" href="#">Performance Stats</a></li>
+            <li  className="nav-item"> <a className="nav-link" href="#">Injuries</a></li>
+          </ul>
             <ul className="nav nav-tabs">
               {this.uniqueTestNames.map((testName, index) => (
                 <li
                   onClick={() => this.updateCurrentStatInd(index)}
                   className="nav-item"
+                  key={testName}
                 >
                   <a
                     className={
@@ -53,6 +60,7 @@ class AthleteProfile extends Component {
                 </li>
               ))}
             </ul>
+            <Container>
             <AthleteGraphs
               stats={this.props.athleteInfo.stats}
               currentTests={this.stats.filter(
@@ -61,7 +69,9 @@ class AthleteProfile extends Component {
                   this.uniqueTestNames[this.state.currentStatInd]
               )}
               testName={this.uniqueTestNames[this.state.currentStatInd]}
+              injuries={this.injuries}
             />
+            </Container>
           </div>
         </div>
     );
