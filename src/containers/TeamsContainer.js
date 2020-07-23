@@ -3,9 +3,7 @@ import TeamCard from "../components/TeamCard";
 import NewTeamForm from "../components/forms/NewTeamForm";
 import { Route, NavLink } from "react-router-dom";
 import {
-  Card,
-  CardMedia,
-  CardActionArea,
+  Paper,
   Grid,
 } from "@material-ui/core";
 
@@ -30,21 +28,12 @@ class TeamsContainer extends Component {
             />
           );
         })}
-        </div>
-        <div style={{ paddingTop: 50 }}>
           <Grid container spacing={1}>
             <Grid container item xs={12} spacing={3}>
               <NavLink to="/teams/create-team" exact>
-                <Card style={{ maxWidth: 250, maxHeight: 275}}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Plus Sign"
-                      height="287"
-                      image="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
-                    />
-                  </CardActionArea>
-                </Card>
+                <Paper elevation={3} style={{borderRadius: "50%", margin: 50, marginTop: 100}} >
+                  <img style={{maxWidth: 200, maxHeight: 225, borderRadius: 100}}src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"/>
+                </Paper>
               </NavLink>
             </Grid>
           </Grid>

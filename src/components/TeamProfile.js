@@ -4,7 +4,7 @@ import React, { Component, Fragment } from "react";
 import AthleteCard from "./AthleteCard";
 import { Route, NavLink } from "react-router-dom";
 import NewAthleteForm from "./forms/NewAthleteForm";
-import { Card, CardMedia, CardActionArea, Grid } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 
 class TeamProfile extends Component {
   render() {
@@ -22,40 +22,36 @@ class TeamProfile extends Component {
           {this.props.athletes.map((athlete) => {
             return <AthleteCard key={athlete.id} athleteInfo={athlete} />;
           })}
-                </div>
-          <div style={{ paddingTop: 50 }}>
-            <Grid container spacing={1}>
-              <Grid container item xs={12} spacing={3}>
-                <NavLink
-                  to={`/team/${this.props.teamInfo.id}/add-athlete`}
-                  exact
-                >
-                  <Card style={{ maxWidth: 200 }}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="Plus Sign"
-                        height="200"
-                        image="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
-                      />
-                    </CardActionArea>
-                  </Card>
-                </NavLink>
-              </Grid>
-            </Grid>
-          </div>
-          <Route
-            path={`/team/${this.props.teamInfo.id}/add-athlete`}
-            render={(props) => (
-              <NewAthleteForm
-                {...props}
-                userId={this.props.userId}
-                teamId={this.props.teamInfo.id}
-                addTeam={this.props.addTeam}
-              />
-            )}
-          />
         </div>
+        <div style={{ paddingTop: 50 }}>
+          <Grid container spacing={1}>
+            <Grid container item xs={12} spacing={3}>
+              <NavLink to={`/team/${this.props.teamInfo.id}/add-athlete`} exact>
+                <Paper
+                  elevation={3}
+                  style={{ borderRadius: "50%", marginTop: 20}}
+                >
+                  <img
+                    style={{ maxWidth: 170, maxHeight: 195, borderRadius: 100 }}
+                    src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
+                  />
+                </Paper>
+              </NavLink>
+            </Grid>
+          </Grid>
+        </div>
+        <Route
+          path={`/team/${this.props.teamInfo.id}/add-athlete`}
+          render={(props) => (
+            <NewAthleteForm
+              {...props}
+              userId={this.props.userId}
+              teamId={this.props.teamInfo.id}
+              addTeam={this.props.addTeam}
+            />
+          )}
+        />
+      </div>
     );
   }
 }
