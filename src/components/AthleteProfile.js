@@ -5,6 +5,7 @@ import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
 import NewStatForm from "./forms/NewStatForm";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
+import Button from 'react-bootstrap/Button'
 import Typography from "@material-ui/core/Typography";
 
 class AthleteProfile extends Component {

@@ -47,7 +47,7 @@ const AthletePerformanceGraph = (props) => {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: `${props.testName} Results`,
+            text: `${props.testName ? `${props.testName}` : "No Data Available"}`,
             maintainAspectRatio: false,
             fontSize: 20,
           },

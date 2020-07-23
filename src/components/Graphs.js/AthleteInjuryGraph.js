@@ -43,7 +43,7 @@ const AthleteInjuryGraph = (props) => {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: "Injuries",
+            text: `${props.injuries.length !== 0 ? `Injuries` : "No Data Available"}`,
             maintainAspectRatio: false,
             fontSize: 20,
           },
