@@ -20,6 +20,7 @@ const AthleteGraphs = (props) => {
     .map(reverseDateRepresentation)
 
   return (
+      <div>
     <Line 
       data={{
         labels: sortedDates,
@@ -52,6 +53,7 @@ const AthleteGraphs = (props) => {
         },
       }}
     />
+    </div>
   );
 };
 

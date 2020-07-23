@@ -35,7 +35,7 @@ class TeamsContainer extends Component {
           <Grid container spacing={1}>
             <Grid container item xs={12} spacing={3}>
               <NavLink to="/teams/create-team" exact>
-                <Card style={{ maxWidth: 250, maxHeight: 275 }}>
+                <Card style={{ maxWidth: 250, maxHeight: 275}}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
