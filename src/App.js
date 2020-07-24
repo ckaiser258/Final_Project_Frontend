@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { trackPromise } from 'react-promise-tracker';
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
@@ -43,6 +44,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
+      trackPromise(
       api.auth.getCurrentUser().then((data) => {
         this.setState({
           auth: {
@@ -56,21 +58,23 @@ class App extends Component {
             },
           },
         });
-      });
+      }));
+      trackPromise(
       api.teams.getTeams().then((data => {
         this.setState({
           teams: data.filter(team => {
             return team.user_id === this.state.auth.user.id
           })
         })
-      }));
+      })));
+      trackPromise(
       api.athletes.getAthletes().then((data => {
         this.setState({
           athletes: data.filter(athlete => {
             return athlete.user_id === this.state.auth.user.id
           })
         })
-      }));
+      })));
     }
   }
 
@@ -133,6 +137,7 @@ class App extends Component {
       <Fragment>
         <div >
           <Navbar bg="light">
+          <i class="far fa-chart-bar fa-lg" style={{marginRight: 7}}></i>
             <Navbar.Brand href={this.state.auth.user.id ? "/home" : "/"}>Performance Mapper</Navbar.Brand>     
             {this.state.auth.user.id ? (
               <div style={{position: "absolute", right: "45px"}}>
