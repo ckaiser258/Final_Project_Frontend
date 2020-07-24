@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom"
 import { api } from "../../services/api";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -52,7 +51,7 @@ class NewStatForm extends Component {
                 })}
               </Form.Control>
               <Form.Text className="text-muted">
-                You Can Pick From Your Previous Tests Here
+                You can pick from your previous tests here
               </Form.Text>
             </Form.Group>
             <Form.Group>
@@ -64,7 +63,7 @@ class NewStatForm extends Component {
                 onChange={this.handleChange}
               />
               <Form.Text className="text-muted">
-                Or Enter a New Test Here
+                Or enter a new test here
               </Form.Text>
             </Form.Group>
 
@@ -72,6 +71,7 @@ class NewStatForm extends Component {
               <Form.Label>Result</Form.Label>
               <Form.Control
                 type="number"
+                min="1" max="5"
                 step={0.01}
                 placeholder="Result"
                 name="result"

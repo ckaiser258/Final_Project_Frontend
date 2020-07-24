@@ -92,6 +92,9 @@ class CreateAccount extends Component {
               value={fields.password}
               onChange={this.handleChange}
             />
+                <Form.Text className="text-muted">
+                Your password must be 5-20 characters long.
+              </Form.Text>
           </Form.Group>
 
           <Form.Group>
