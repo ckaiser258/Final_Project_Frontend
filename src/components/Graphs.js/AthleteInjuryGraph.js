@@ -1,5 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Doughnut } from "react-chartjs-2";
+import Button from "react-bootstrap/Button"
+
 
 const AthleteInjuryGraph = (props) => {
   let injuryDates = props.injuries.map((injury) => {
@@ -34,11 +36,12 @@ const AthleteInjuryGraph = (props) => {
   };
 
   return (
+    <Fragment>
     <div>
       <Doughnut
         data={injuryData}
-        height={250}
-        width={350}
+        height={325}
+        width={425}
         options={{
           maintainAspectRatio: false,
           title: {
@@ -51,9 +54,19 @@ const AthleteInjuryGraph = (props) => {
             display: true,
             position: "right",
           },
-        }}
+          layout: {
+            padding: {
+                left: 100,
+                top: 25,
+                bottom: 20
+            }
+        }
+      }}
       />
     </div>
+        <Button onClick={props.toggleInjuryForm} style={{marginTop: 50}, {marginBottom: 10}}>Add Injury</Button>{' '}
+        <Button onClick={props.toggleInjuryTable} style={{marginTop: 50}, {marginBottom: 10}}>View Injury History</Button>
+        </Fragment>
   );
 };
 

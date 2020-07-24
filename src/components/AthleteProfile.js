@@ -18,6 +18,7 @@ class AthleteProfile extends Component {
     injuryFormShowing: false,
     statChartShowing: true,
     injuryChartShowing: false,
+    injuryTableShowing: false
   };
 
   updateCurrentStatInd = (index) => {
@@ -59,6 +60,18 @@ class AthleteProfile extends Component {
       : this.setState({
           ...this.state,
           injuryFormShowing: false,
+        });
+  };
+
+  toggleInjuryTable = () => {
+    this.state.injuryTableShowing === false
+      ? this.setState({
+          ...this.state,
+          injuryTableShowing: true,
+        })
+      : this.setState({
+          ...this.state,
+          injuryTableShowing: false,
         });
   };
 
@@ -150,7 +163,8 @@ class AthleteProfile extends Component {
             </Fragment>
           ) : (
             <Container>
-              <AthleteInjuryGraph injuries={this.injuries} toggleInjuryForm={this.toggleInjuryForm} />
+              <AthleteInjuryGraph injuries={this.injuries} toggleInjuryForm={this.toggleInjuryForm}
+              toggleInjuryTable={this.toggleInjuryTable} />
                 {this.state.injuryFormShowing === true ? (
                 <NewInjuryForm
                   athlete={this.props.athleteInfo}
@@ -160,7 +174,8 @@ class AthleteProfile extends Component {
             </Container>
           )}
         </div>
-        <InjuryTable/>
+        {this.state.injuryTableShowing === true ? (
+        <InjuryTable injuries={this.injuries}/>) : null}
       </div>
     );
   }
