@@ -4,24 +4,69 @@ import Button from "react-bootstrap/Button"
 
 const AthletePerformanceGraph = (props) => {
 
-    //Sort dates in ascending order (Since they're strings not date-time objects)
 
-  let performanceDates = props.currentTests.map((test) => {
-    return test.date;
+  let performanceDates = props.currentTests ? props.currentTests.map((test) => {
+    return test.date
+  }) : props.teamCurrentTests.map(test => {
+    return test.date
   });
 
-  let reverseDateRepresentation = (date) => {
-    let parts = date.split("-");
-    return `${parts[2]}-${parts[1]}-${parts[0]}`;
-  };
+  if (props.teamCurrentTests) {
+    let results = props.teamCurrentTests.map(test => {
+      return test.result
+    })
+    console.log(results)
+  }
 
-  let sortedPerformanceDates = performanceDates
-    .map(reverseDateRepresentation)
-    .sort()
-    .map(reverseDateRepresentation)
+  let uniqueDates = props.stats
+  .map((stat) => stat.date)
+  .filter((value, index, self) => self.indexOf(value) === index);
+
+
+  
+  let allResultsOfDate = uniqueDates.map(date => {
+    props.stats.map(stat => {
+      let resultOfDate = []
+      for (let i = 0; i < props.stats.length; i++) {
+      }
+    })
+  })
+
+
+  const aggregateResults = () => {
+    let sortedPerformanceTests = props.teamCurrentTests.sort(function(a,b) {
+      return new Date(a.date) - new Date(b.date)
+    })
+    let aggregatedResults = {}
+    for (let i = 0; i < sortedPerformanceTests.length; i++) {
+      let test = sortedPerformanceTests[i]
+      if (aggregatedResults[test.date]) {
+        aggregatedResults[test.date] = [... aggregatedResults[test.date], test.result]
+      } else {
+        aggregatedResults[test.date] = [test.result]
+      }
+    }
+    for (let result in aggregatedResults) {
+      let averageResult = aggregatedResults[result].reduce((a,b) => a + b, 0) / aggregatedResults[result].length
+      aggregatedResults[result] = Math.round(100 * averageResult)/100
+    }
+    return aggregatedResults
+  }
+
+  let teamAverage = props.currentTests ? {} : aggregateResults()
+
+  // let reverseDateRepresentation = (date) => {
+  //   let parts = date.split("-");
+  //   return `${parts[0]}-${parts[2]}-${parts[1]}`;
+  // };
+
+  // let sortedPerformanceDates = performanceDates
+  //   .map(reverseDateRepresentation)
+  //   .sort()
+  //   .map(reverseDateRepresentation)
 
   let performanceData = {
-    labels: sortedPerformanceDates,
+    labels: props.currentTests ? performanceDates : Object.keys(teamAverage),
     datasets: [
       {
         label: "Result",
@@ -29,13 +74,13 @@ const AthletePerformanceGraph = (props) => {
         backgroundColor: "rgba(75,192,192,1)",
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
-        data: props.currentTests.map((test) => {
+        data: props.currentTests ? props.currentTests.map((test) => {
           return test.result;
-        }),
+        }) : Object.values(teamAverage),
       },
     ],
   };
-
+console.log(props.teamCurrentTests)
   return (
     <Fragment>
     <div>

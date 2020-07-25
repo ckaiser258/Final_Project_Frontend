@@ -3,7 +3,7 @@ import AthletePerformanceGraph from "./Graphs.js/AthletePerformanceGraph";
 import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
 import NewStatForm from "./forms/NewStatForm";
 import NewInjuryForm from "./forms/NewInjuryForm"
-import InjuryTable from "./InjuryTable"
+import AthleteInjuryTable from "./AthleteInjuryTable"
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -95,12 +95,6 @@ class AthleteProfile extends Component {
 
   injuries = this.props.athleteInfo.injuries;
 
-  athleteUrl = `${this.props.athleteInfo.first_name
-    .replace(/\s+/g, "-")
-    .toLowerCase()}-${this.props.athleteInfo.last_name
-    .replace(/\s+/g, "-")
-    .toLowerCase()}`;
-
   render() {
     return (
       <div className="text-center" style={{ paddingRight: 100 }}>
@@ -175,7 +169,7 @@ class AthleteProfile extends Component {
           )}
         </div>
         {this.state.injuryTableShowing === true ? (
-        <InjuryTable injuries={this.injuries}/>) : null}
+        <AthleteInjuryTable injuries={this.injuries}/>) : null}
       </div>
     );
   }

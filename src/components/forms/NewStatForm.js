@@ -71,7 +71,7 @@ class NewStatForm extends Component {
               <Form.Label>Result</Form.Label>
               <Form.Control
                 type="number"
-                min="1" max="5"
+                min=".01"
                 step={0.01}
                 placeholder="Result"
                 name="result"

@@ -12,8 +12,20 @@ const AthleteInjuryGraph = (props) => {
     return injury.site;
   });
 
+  let uniqueInjurySites = injurySites
+  .filter((value, index, self) => self.indexOf(value) === index);
+
+  let injuryCounts = {};
+
+  injurySites.map((injury) => {
+    return (injuryCounts[injury] = (injuryCounts[injury] || 0) + 1);
+  })
+
+   injuryCounts = Object.values(injuryCounts)
+  
+
   let injuryData = {
-    labels: injurySites,
+    labels: uniqueInjurySites,
     datasets: [
       {
         label: "Result",
@@ -27,10 +39,7 @@ const AthleteInjuryGraph = (props) => {
         ],
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
-        data: injurySites.map((injury) => {
-          let counts = {};
-          return (counts[injury] = (counts[injury] || 0) + 1);
-        }),
+        data: injuryCounts,
       },
     ],
   };
