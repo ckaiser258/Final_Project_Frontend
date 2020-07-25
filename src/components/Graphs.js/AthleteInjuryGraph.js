@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Doughnut } from "react-chartjs-2";
-import Button from "react-bootstrap/Button"
-
+import Button from "react-bootstrap/Button";
 
 const AthleteInjuryGraph = (props) => {
   let injuryDates = props.injuries.map((injury) => {
@@ -12,17 +11,17 @@ const AthleteInjuryGraph = (props) => {
     return injury.site;
   });
 
-  let uniqueInjurySites = injurySites
-  .filter((value, index, self) => self.indexOf(value) === index);
+  let uniqueInjurySites = injurySites.filter(
+    (value, index, self) => self.indexOf(value) === index
+  );
 
   let injuryCounts = {};
 
   injurySites.map((injury) => {
     return (injuryCounts[injury] = (injuryCounts[injury] || 0) + 1);
-  })
+  });
 
-   injuryCounts = Object.values(injuryCounts)
-  
+  injuryCounts = Object.values(injuryCounts);
 
   let injuryData = {
     labels: uniqueInjurySites,
@@ -46,36 +45,52 @@ const AthleteInjuryGraph = (props) => {
 
   return (
     <Fragment>
-    <div>
-      <Doughnut
-        data={injuryData}
-        height={325}
-        width={425}
-        options={{
-          maintainAspectRatio: false,
-          title: {
-            display: true,
-            text: `${props.injuries.length !== 0 ? `Injuries` : "No Data Available"}`,
+      <div>
+        <Doughnut
+          data={injuryData}
+          height={325}
+          width={425}
+          options={{
             maintainAspectRatio: false,
-            fontSize: 20,
-          },
-          legend: {
-            display: true,
-            position: "right",
-          },
-          layout: {
-            padding: {
+            title: {
+              display: true,
+              text: `${
+                props.injuries.length !== 0 ? `Injuries` : "No Data Available"
+              }`,
+              maintainAspectRatio: false,
+              fontSize: 20,
+            },
+            legend: {
+              display: true,
+              position: "right",
+            },
+            layout: {
+              padding: {
                 left: 100,
                 top: 25,
-                bottom: 20
-            }
-        }
-      }}
-      />
-    </div>
-        <Button onClick={props.toggleInjuryForm} style={{marginTop: 50}, {marginBottom: 10}}>Add Injury</Button>{' '}
-        <Button onClick={props.toggleInjuryTable} style={{marginTop: 50}, {marginBottom: 10}}>View Injury History</Button>
-        </Fragment>
+                bottom: 20,
+              },
+            },
+          }}
+        />
+      </div>
+      {props.noAdding ? null : (
+        <Button
+          onClick={props.toggleInjuryForm}
+          style={({ marginTop: 50 }, { marginBottom: 10 })}
+        >
+          Add Injury
+        </Button>
+      )}{" "}
+      <Button
+        onClick={props.toggleInjuryTable}
+        style={({ marginTop: 50 }, { marginBottom: 10 })}
+      >
+        {props.tableShowing
+          ? "Hide Injury History"
+          : "View Injury History"}
+      </Button>
+    </Fragment>
   );
 };
 

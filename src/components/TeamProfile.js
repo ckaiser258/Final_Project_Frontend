@@ -19,6 +19,7 @@ class TeamProfile extends Component {
     currentStatInd: 0,
     stats: this.props.teamInfo.stats,
     injuries: this.props.teamInfo.injuries,
+    athletesShowing: false,
     statFormShowing: false,
     injuryFormShowing: false,
     statChartShowing: true,
@@ -90,6 +91,18 @@ class TeamProfile extends Component {
         });
   };
 
+  toggleAthletes = () => {
+    this.state.athletesShowing === false
+    ? this.setState({
+        ...this.state,
+        athletesShowing: true,
+      })
+    : this.setState({
+        ...this.state,
+        athletesShowing: false,
+      });
+  }
+
   switchCharts = () => {
     this.state.statChartShowing === true
       ? this.setState({
@@ -118,7 +131,7 @@ class TeamProfile extends Component {
           <Button onClick={this.switchCharts}>
             {" "}
             {this.state.statChartShowing
-              ? "Show / Add Injury Stats"
+              ? "Show Injury Stats"
               : "Show Performance Stats"}{" "}
           </Button>
           {this.state.statChartShowing ? (
@@ -155,9 +168,10 @@ class TeamProfile extends Component {
                   testName={this.uniqueTestNames[this.state.currentStatInd]}
                   toggleStatForm={this.toggleStatForm}
                 />
+                <Button onClick={this.toggleAthletes} style={{ marginTop: 20 }}>{this.state.athletesShowing ? "Hide Athletes" : "View / Add Athletes"}</Button>
                 {/* {this.state.statFormShowing === true ? (
                   <NewStatForm
-                    athletes={this.props.teamInfo.athletes}
+                    teamAthletes={this.props.teamInfo.athletes}
                     testNames={this.uniqueTestNames}
                     toggleStatForm={this.toggleStatForm}
                   />
@@ -168,8 +182,10 @@ class TeamProfile extends Component {
             <Container>
               <AthleteInjuryGraph
                 injuries={this.injuries}
+                noAdding={" "}
                 toggleInjuryForm={this.toggleInjuryForm}
                 toggleInjuryTable={this.toggleInjuryTable}
+                tableShowing={this.state.injuryTableShowing}
               />
               {/* {this.state.injuryFormShowing === true ? (
                 <NewInjuryForm
@@ -187,7 +203,8 @@ class TeamProfile extends Component {
             athletes={this.props.athletes}
           />
         ) : null}
-
+        
+          { this.state.athletesShowing ? (
         <div>
           <div
             style={{
@@ -238,7 +255,9 @@ class TeamProfile extends Component {
             )}
           />
         </div>
+  ) : null}
       </div>
+            
     );
   }
 }

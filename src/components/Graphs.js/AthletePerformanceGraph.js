@@ -15,7 +15,6 @@ const AthletePerformanceGraph = (props) => {
     let results = props.teamCurrentTests.map(test => {
       return test.result
     })
-    console.log(results)
   }
 
   let uniqueDates = props.stats
@@ -69,7 +68,7 @@ const AthletePerformanceGraph = (props) => {
     labels: props.currentTests ? performanceDates : Object.keys(teamAverage),
     datasets: [
       {
-        label: "Result",
+        label: props.currentTests ? "Result" : "Team Average",
         fill: false,
         backgroundColor: "rgba(75,192,192,1)",
         borderColor: "rgba(0,0,0,1)",
@@ -80,7 +79,6 @@ const AthletePerformanceGraph = (props) => {
       },
     ],
   };
-console.log(props.teamCurrentTests)
   return (
     <Fragment>
     <div>
@@ -103,7 +101,7 @@ console.log(props.teamCurrentTests)
         }}
       />
     </div>
-    <Button onClick={props.toggleStatForm}>Add Stat</Button>
+    {props.currentTests ? <Button onClick={props.toggleStatForm} style={{ marginTop: 20 }}>Add Stat</Button> : null}
     </Fragment>
   );
 };

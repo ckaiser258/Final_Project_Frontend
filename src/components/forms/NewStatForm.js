@@ -11,13 +11,16 @@ class NewStatForm extends Component {
     date: "",
   };
 
+
   handleChange = (e) => {
+    // return this.props.teamAthletes ? (null) : (
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value,
       athlete_id: this.props.athlete.id,
       team_id: this.props.athlete.team_id,
-    });
+    })
+    //)
   };
 
   handleSubmit = (e) => {
@@ -34,6 +37,20 @@ class NewStatForm extends Component {
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>
+          {/* {this.props.teamAthletes ? (<Form.Group>
+              <Form.Label>Select an Athlete</Form.Label>
+              <Form.Control
+                as="select"
+                placeholder="Select an Athlete"
+                name="test_name"
+                value={this.state.test_name}
+                onChange={this.handleChange}
+              >
+                {this.props.teamAthletes.map((athlete) => {
+                  return <option key={athlete.id}>{athlete.first_name} {athlete.last_name}</option>;
+                })}
+              </Form.Control>
+            </Form.Group>) : null} */}
             <Form.Group>
               <Form.Label>Test Name</Form.Label>
               <Form.Control
