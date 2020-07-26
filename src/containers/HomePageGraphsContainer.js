@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePageGraphs from "./Graphs.js/HomePageGraphs";
+import HomePageGraphs from "../components/Graphs.js/HomePageGraphs";
 import { Grid } from "@material-ui/core";
 import Container from "react-bootstrap/Container";
 

@@ -81,9 +81,12 @@ class App extends Component {
     }
   }
 
-  // addTeam = (team) => {
-  //   this.setState({...this.state.teams, team})
-  // }
+  addTeam = (team) => {
+    this.setState({
+      ...this.state.teams,
+      team,
+    });
+  };
 
   // addAthlete = (athlete) => {
   //   this.setState({...this.state.athletes, athlete})
@@ -183,7 +186,11 @@ class App extends Component {
               exact
               path="/home"
               render={(props) => (
-                <ProfilePage {...props} userInfo={this.state.auth.user} teams={this.state.teams} />
+                <ProfilePage
+                  {...props}
+                  userInfo={this.state.auth.user}
+                  teams={this.state.teams}
+                />
               )}
             />
             <Route

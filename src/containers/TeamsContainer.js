@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 
 class TeamsContainer extends Component {
+
   render() {
     return (
       <div className="text-center" style={{ paddingRight: 100 }}>
