@@ -11,6 +11,10 @@ const AthletePerformanceGraph = (props) => {
     return test.date
   });
 
+  let sortedPerformanceDates = performanceDates.sort(function(a,b) {
+    return new Date(a) - new Date(b)
+  })
+
   if (props.teamCurrentTests) {
     let results = props.teamCurrentTests.map(test => {
       return test.result
@@ -54,18 +58,8 @@ const AthletePerformanceGraph = (props) => {
 
   let teamAverage = props.currentTests ? {} : aggregateResults()
 
-  // let reverseDateRepresentation = (date) => {
-  //   let parts = date.split("-");
-  //   return `${parts[0]}-${parts[2]}-${parts[1]}`;
-  // };
-
-  // let sortedPerformanceDates = performanceDates
-  //   .map(reverseDateRepresentation)
-  //   .sort()
-  //   .map(reverseDateRepresentation)
-
   let performanceData = {
-    labels: props.currentTests ? performanceDates : Object.keys(teamAverage),
+    labels: props.currentTests ? sortedPerformanceDates : Object.keys(teamAverage),
     datasets: [
       {
         label: props.currentTests ? "Result" : "Team Average",
