@@ -10,10 +10,11 @@ import {
   Grid,
 } from "@material-ui/core";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container"
 
 const handleImageError = (e) => {
   e.target.src =
-    "https://media.npr.org/assets/img/2020/06/10/gettyimages-200199027-001-b5fb3d8d8469ab744d9e97706fa67bc5c0e4fa40.jpg";
+    "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/307/2020/06/26000313/sport.png";
 };
 
 const TeamCard = (props) => {
@@ -40,9 +41,11 @@ const TeamCard = (props) => {
               </Typography>
 
               <CardActions>
+                <Container>
               <Link key={props.teamInfo.id} to={`/team/${props.teamInfo.id}`}>
                 <Button>View Team</Button>
                 </Link>
+                </Container>
               </CardActions>
             </CardContent>
           </Card>

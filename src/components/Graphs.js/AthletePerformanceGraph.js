@@ -101,7 +101,7 @@ const AthletePerformanceGraph = (props) => {
         }}
       />
     </div>
-    {props.currentTests ? <Button onClick={props.toggleStatForm} style={{ marginTop: 20 }}>Add Stat</Button> : null}
+    {props.currentTests ? <Button onClick={props.toggleStatForm} style={{ marginTop: 10}}>Add Stat</Button> : null}
     </Fragment>
   );
 };

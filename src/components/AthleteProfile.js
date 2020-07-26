@@ -103,6 +103,7 @@ class AthleteProfile extends Component {
             {this.props.athleteInfo.first_name}{" "}
             {this.props.athleteInfo.last_name}
           </Typography>
+          <Typography gutterBottom variant="subtitle1" component="h4">{this.props.athleteInfo.year}</Typography>
         </Jumbotron>
         <div>
           <Button onClick={this.switchCharts}>
