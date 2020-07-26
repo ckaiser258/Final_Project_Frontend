@@ -1,11 +1,28 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import HomePageGraphsContainer from "./HomePageGraphsContainer";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Typography from '@material-ui/core/Typography'
+import Button from "react-bootstrap/Button";
+import Typography from "@material-ui/core/Typography";
 
-const ProfilePage = (props) => {
+class ProfilePage extends Component {
+  render() {
     return (
-<div className="text-center" style={{paddingRight: 100}}><Jumbotron><Typography gutterBottom variant="h2" component="h4">Hello, Coach {props.userInfo.last_name}</Typography></Jumbotron></div>
+      <Fragment>
+        <div className="text-center" style={{ paddingRight: 100 }}>
+          <Jumbotron>
+            <Typography gutterBottom variant="h2" component="h4">
+              Hello, Coach {this.props.userInfo.last_name}
+            </Typography>
+          </Jumbotron>
+          <HomePageGraphsContainer teams={this.props.teams} />
+          <Link to="/teams">
+            <Button style={{marginTop: 15}}>View All Teams</Button>
+          </Link>
+        </div>
+      </Fragment>
     );
+  }
 }
 
 export default ProfilePage;
