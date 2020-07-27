@@ -41,6 +41,29 @@ class App extends Component {
     this.setState({ auth: { user: {} } });
   };
 
+  fetchTeams = () => {
+    trackPromise(
+      api.teams.getTeams().then((data) => {
+        this.setState({
+          teams: data.filter((team) => {
+            return team.user_id === this.state.auth.user.id;
+          }),
+        });
+      })
+    );
+  };
+fetchAthletes = () => {
+  trackPromise(
+    api.athletes.getAthletes().then((data) => {
+      this.setState({
+        athletes: data.filter((athlete) => {
+          return athlete.user_id === this.state.auth.user.id;
+        }),
+      });
+    }))}
+  
+  
+
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -60,32 +83,17 @@ class App extends Component {
           });
         })
       );
-      trackPromise(
-        api.teams.getTeams().then((data) => {
-          this.setState({
-            teams: data.filter((team) => {
-              return team.user_id === this.state.auth.user.id;
-            }),
-          });
-        })
-      );
-      trackPromise(
-        api.athletes.getAthletes().then((data) => {
-          this.setState({
-            athletes: data.filter((athlete) => {
-              return athlete.user_id === this.state.auth.user.id;
-            }),
-          });
-        })
-      );
+      this.fetchTeams();
+      this.fetchAthletes();
     }
   }
 
   addTeam = (team) => {
-    this.setState({
-      ...this.state.teams,
-      team,
-    });
+    api.teams
+    .createTeam(team)
+    .then((res) => {
+     this.fetchTeams();
+    })
   };
 
   // addAthlete = (athlete) => {

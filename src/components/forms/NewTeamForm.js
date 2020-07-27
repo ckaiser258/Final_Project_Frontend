@@ -20,9 +20,7 @@ class NewTeamForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    api.teams.createTeam(this.state).then((res) => {
-      api.teams.getTeams();
-    });
+    this.props.addTeam(this.state)
     this.props.history.push("/teams");
     // this.props.showSuccessAlert()
   };

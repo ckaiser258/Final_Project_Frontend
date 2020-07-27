@@ -32,9 +32,9 @@ const AthletePerformanceGraph = (props) => {
     });
   });
 
-  let sortedAthletePerformanceTests = props.currentTests.sort(function (a, b) {
+  let sortedAthletePerformanceTests = props.currentTests ? props.currentTests.sort(function (a, b) {
     return new Date(a.date) - new Date(b.date);
-  });
+  }) : {}
 
   const aggregateResults = () => {
     let sortedPerformanceTests = props.teamCurrentTests.sort(function (a, b) {
