@@ -5,31 +5,31 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
 class NewTeamForm extends Component {
+  state = {
+    name: "",
+    logo: "",
+  };
 
-    state = {
-        name: "",
-        logo: ""
-    }
+  handleChange = (e) => {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value,
+      user_id: this.props.userId,
+    });
+  };
 
-    handleChange = (e) => {
-        this.setState({
-            ...this.state, 
-            [e.target.name]: e.target.value,
-            user_id: this.props.userId
-        })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault()
-        this.props.addTeam(this.state)
-        api.teams.createTeam(this.state)
-        this.props.history.push('/teams')
-        // this.props.showSuccessAlert()
-    }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    api.teams.createTeam(this.state).then((res) => {
+      api.teams.getTeams();
+    });
+    this.props.history.push("/teams");
+    // this.props.showSuccessAlert()
+  };
 
   render() {
     return (
-      <div style={{marginLeft: 200, marginTop: 20}}>
+      <div style={{ marginLeft: 200, marginTop: 20 }}>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>

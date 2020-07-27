@@ -64,7 +64,7 @@ const AthletePerformanceGraph = (props) => {
       {
         label: props.currentTests ? "Result" : "Team Average",
         fill: true,
-        backgroundColor: "#1AFFD022",
+        backgroundColor: "rgba(247, 223, 0, 0.6)",
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
         data: props.currentTests ? props.currentTests.map((test) => {
@@ -95,7 +95,15 @@ const AthletePerformanceGraph = (props) => {
         }}
       />
     </div>
-    {props.currentTests ? <Button onClick={props.toggleStatForm} style={{ marginTop: 10}}>Add Stat</Button> : null}
+    {props.currentTests ? <Button onClick={props.toggleStatForm} style={{ marginTop: 10}}>Add Stat</Button> : null} {' '}
+    {props.currentTests ? <Button
+        onClick={props.togglePerformanceTable}
+        style={{ marginTop: 10}}
+      >
+        {props.tableShowing
+          ? "Hide Stats Table"
+          : "View Stats Table"}
+      </Button> : null}
     </Fragment>
   );
 };
