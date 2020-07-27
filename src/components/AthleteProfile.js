@@ -161,6 +161,7 @@ class AthleteProfile extends Component {
                   athlete={this.props.athleteInfo}
                   toggleStatForm={this.toggleStatForm}
                   togglePerformanceTable={this.togglePerformanceTable}
+                  tableShowing={this.state.performanceTableShowing}
                 />
                 {this.state.statFormShowing === true ? (
                 <NewStatForm

@@ -17,6 +17,16 @@ const useStyles = makeStyles({
 export default function AthletePerformanceTable(props) {
   const classes = useStyles();
 
+  let performanceDates = props.stats.map(stat => {
+    return stat.date
+  });
+
+  let sortedAthletePerformanceTests = props.stats.sort(function(a,b) {
+    return new Date(a.date) - new Date(b.date)
+  })
+
+  console.log(sortedAthletePerformanceTests)
+
   return (
     <TableContainer component={Paper} style={{ marginBottom: 20 }}>
       <Table className={classes.table} aria-label="simple table">
@@ -28,7 +38,7 @@ export default function AthletePerformanceTable(props) {
             </TableRow>
         </TableHead>
           <TableBody>
-            {props.stats.map((stat) => (
+            {sortedAthletePerformanceTests.map((stat) => (
               <TableRow key={stat.id}>
                 <TableCell component="th" scope="row" style={{ fontWeight: "bold" }}>
                   {stat.test_name}
