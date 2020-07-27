@@ -3,7 +3,8 @@ import AthletePerformanceGraph from "./Graphs.js/AthletePerformanceGraph";
 import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
 import NewStatForm from "./forms/NewStatForm";
 import NewInjuryForm from "./forms/NewInjuryForm"
-import AthleteInjuryTable from "./AthleteInjuryTable"
+import AthleteInjuryTable from "./tables/AthleteInjuryTable"
+import AthletePerformanceTable from "./tables/AthletePerformanceTable"
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -18,7 +19,8 @@ class AthleteProfile extends Component {
     injuryFormShowing: false,
     statChartShowing: true,
     injuryChartShowing: false,
-    injuryTableShowing: false
+    injuryTableShowing: false,
+    performanceTableShowing: false
   };
 
   updateCurrentStatInd = (index) => {
@@ -75,6 +77,18 @@ class AthleteProfile extends Component {
         });
   };
 
+  togglePerformanceTable = () => {
+    this.state.performanceTableShowing === false
+      ? this.setState({
+          ...this.state,
+          performanceTableShowing: true,
+        })
+      : this.setState({
+          ...this.state,
+          performanceTableShowing: false,
+        });
+  };
+
   switchCharts = () => {
     this.state.statChartShowing === true
       ? this.setState({
@@ -103,7 +117,7 @@ class AthleteProfile extends Component {
             {this.props.athleteInfo.first_name}{" "}
             {this.props.athleteInfo.last_name}
           </Typography>
-          <Typography gutterBottom variant="subtitle1" component="h4">{this.props.athleteInfo.year}</Typography>
+          <Typography gutterBottom variant="h5" component="h4">{this.props.athleteInfo.year}</Typography>
         </Jumbotron>
         <div>
           <Button onClick={this.switchCharts}>
@@ -146,6 +160,7 @@ class AthleteProfile extends Component {
                   testName={this.uniqueTestNames[this.state.currentStatInd]}
                   athlete={this.props.athleteInfo}
                   toggleStatForm={this.toggleStatForm}
+                  togglePerformanceTable={this.togglePerformanceTable}
                 />
                 {this.state.statFormShowing === true ? (
                 <NewStatForm
@@ -171,6 +186,8 @@ class AthleteProfile extends Component {
         </div>
         {this.state.injuryTableShowing === true ? (
         <AthleteInjuryTable injuries={this.injuries}/>) : null}
+        {this.state.performanceTableShowing === true ? (
+        <AthletePerformanceTable stats={this.stats}/>) : null}
       </div>
     );
   }

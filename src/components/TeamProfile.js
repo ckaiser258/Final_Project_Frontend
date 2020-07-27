@@ -12,7 +12,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import { Paper, Grid, Typography } from "@material-ui/core";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import TeamInjuryTable from "./AthleteInjuryTable";
+import TeamInjuryTable from "./tables/AthleteInjuryTable";
 
 class TeamProfile extends Component {
   state = {
