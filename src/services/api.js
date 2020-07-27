@@ -99,6 +99,42 @@ const createInjury = (data) => {
     .catch(error => alert(error.message))
 }
 
+const deleteTeam = (data) => {
+    return fetch(`${API_ROOT}/teams/${data.id}`, {
+        method: "DELETE",
+        headers: headers(),
+    })
+    .then(res => res.json())
+    .catch(error => alert(error.message))
+}
+
+const deleteAthlete = (data) => {
+    return fetch(`${API_ROOT}/athletes/${data.id}`, {
+        method: "DELETE",
+        headers: headers(),
+    })
+    .then(res => res.json())
+    .catch(error => alert(error.message))
+}
+
+const deleteStat = (data) => {
+    return fetch(`${API_ROOT}/stats/${data.id}`, {
+        method: "DELETE",
+        headers: headers(),
+    })
+    .then(res => res.json())
+    .catch(error => alert(error.message))
+}
+
+const deleteInjury = (data) => {
+    return fetch(`${API_ROOT}/injuries/${data.id}`, {
+        method: "DELETE",
+        headers: headers(),
+    })
+    .then(res => res.json())
+    .catch(error => alert(error.message))
+}
+
 export const api = {
     auth: {
         login,
@@ -107,15 +143,19 @@ export const api = {
     },
     teams : {
         getTeams,
-        createTeam
+        createTeam,
+        deleteTeam
     },
     athletes : {
         getAthletes,
-        createAthlete
+        createAthlete,
+        deleteAthlete
     },
     performance: {
         createStat,
         createInjury,
-        getStats
+        getStats,
+        deleteStat,
+        deleteInjury
     }
 }

@@ -63,8 +63,8 @@ const AthletePerformanceGraph = (props) => {
     datasets: [
       {
         label: props.currentTests ? "Result" : "Team Average",
-        fill: false,
-        backgroundColor: "rgba(75,192,192,1)",
+        fill: true,
+        backgroundColor: "#1AFFD022",
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
         data: props.currentTests ? props.currentTests.map((test) => {

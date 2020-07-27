@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { api } from "../services/api"
 import { Link } from 'react-router-dom'
 import {
   Card,
@@ -18,6 +19,11 @@ const handleImageError = (e) => {
 };
 
 const TeamCard = (props) => {
+
+  let handleDelete = () => {
+    api.teams.deleteTeam(props.teamInfo)
+  }
+
   return props.teamInfo.user_id === props.userId ? (
     <Fragment>
     <div style={{ paddingTop: 50 }}>
@@ -45,6 +51,8 @@ const TeamCard = (props) => {
               <Link key={props.teamInfo.id} to={`/team/${props.teamInfo.id}`}>
                 <Button>View Team</Button>
                 </Link>
+                <br></br>
+                <Button onClick={handleDelete} variant="outline-danger" size="sm" style={{marginTop: 7}}>Delete Team</Button>
                 </Container>
               </CardActions>
             </CardContent>
