@@ -28,7 +28,6 @@ export default function AthletePerformanceTable(props) {
   };
 
   return (
-    console.log(props.stats),
     <TableContainer component={Paper} style={{ marginBottom: 20 }}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>

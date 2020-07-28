@@ -1,4 +1,5 @@
 import React from "react";
+import { api } from "../../services/api"
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,6 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Button from "react-bootstrap/Button"
 
 const useStyles = makeStyles({
   table: {
@@ -16,6 +18,10 @@ const useStyles = makeStyles({
 
 export default function AthleteInjuryTable(props) {
   const classes = useStyles();
+
+  let handleDelete = (injury) => {
+    api.performance.deleteInjury(injury);
+  };
 
   return (
     <TableContainer component={Paper} style={{ marginBottom: 20 }}>
@@ -35,6 +41,7 @@ export default function AthleteInjuryTable(props) {
               <TableCell align="right">Severity</TableCell>
               <TableCell align="right">Date</TableCell>
               <TableCell align="right">Description</TableCell>
+              <TableCell align="right"> </TableCell>
             </TableRow>
           )}
         </TableHead>
@@ -48,6 +55,7 @@ export default function AthleteInjuryTable(props) {
                 <TableCell align="right">{injury.severity}</TableCell>
                 <TableCell align="right">{injury.date}</TableCell>
                 <TableCell align="right">{injury.description}</TableCell>
+                <TableCell align="right"><Button onClick={() => {handleDelete(injury)}} variant="outline-danger" size="sm">X</Button>{' '}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -72,6 +80,7 @@ export default function AthleteInjuryTable(props) {
                   <TableCell align="right">{injury.severity}</TableCell>
                   <TableCell align="right">{injury.date}</TableCell>
                   <TableCell align="right">{injury.description}</TableCell>
+                  <TableCell align="right"><Button onClick={() => {handleDelete(injury)}} variant="outline-danger" size="sm">X</Button>{' '}</TableCell>
                 </TableRow>
               );
             })}
