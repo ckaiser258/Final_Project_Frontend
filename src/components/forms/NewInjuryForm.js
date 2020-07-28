@@ -23,8 +23,7 @@ class NewInjuryForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.addInjury(this.state)
-    api.performance.createInjury(this.state);
+    this.props.addInjury(this.state)
     this.props.toggleInjuryForm()
   };
 

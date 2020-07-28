@@ -44,6 +44,7 @@ class App extends Component {
   fetchTeams = () => {
     trackPromise(
       api.teams.getTeams().then((data) => {
+        console.log(data)
         this.setState({
           teams: data.filter((team) => {
             return team.user_id === this.state.auth.user.id;
@@ -104,14 +105,12 @@ class App extends Component {
   addStat = (stat) => {
     api.performance.createStat(stat).then((res) => {
       this.fetchTeams();
-      this.fetchAthletes();
     });
   };
 
   addInjury = (injury) => {
     api.performance.createInjury(injury).then((res) => {
       this.fetchTeams();
-      this.fetchAthletes();
     });
   };
 
@@ -123,6 +122,12 @@ class App extends Component {
 
   deleteAthlete = (athlete) => {
     api.athletes.deleteAthlete(athlete).then((res) => {
+      this.fetchTeams();
+    });
+  };
+
+  deleteStat = (stat) => {
+    api.performance.deleteStat(stat).then((res) => {
       this.fetchTeams();
     });
   };
@@ -274,6 +279,7 @@ class App extends Component {
                     fetchTeams={this.fetchTeams}
                     addStat={this.addStat}
                     addInjury={this.addInjury}
+                    deleteStat={this.deleteStat}
                      />
                   )}
                 />

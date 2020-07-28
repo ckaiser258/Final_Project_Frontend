@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { api } from "../../services/api";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -10,6 +9,7 @@ class NewStatForm extends Component {
     result: "",
     date: "",
   };
+
 
 
   handleChange = (e) => {
@@ -25,9 +25,9 @@ class NewStatForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.addStat(this.state)
-    api.performance.createStat(this.state);
+    this.props.addStat(this.state)
     this.props.toggleStatForm()
+    
   };
 
 

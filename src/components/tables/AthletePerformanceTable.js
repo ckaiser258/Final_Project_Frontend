@@ -24,7 +24,7 @@ export default function AthletePerformanceTable(props) {
   });
 
   let handleDelete = (stat) => {
-    api.performance.deleteStat(stat);
+    props.deleteStat(stat)
   };
 
   return (

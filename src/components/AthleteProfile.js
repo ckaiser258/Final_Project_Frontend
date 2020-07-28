@@ -33,14 +33,6 @@ class AthleteProfile extends Component {
     return stat.date;
   });
 
-  // addStat = (stat) => {
-  //   this.setState({...this.state.stats, stat})
-  // }
-
-  // addInjury = (injury) => {
-  //   this.setState({...this.state.injuries, injury})
-  // }
-
   toggleStatForm = () => {
     this.state.statFormShowing === false
       ? this.setState({
@@ -156,7 +148,6 @@ class AthleteProfile extends Component {
                       stat.test_name ===
                       this.uniqueTestNames[this.state.currentStatInd]
                   )}
-                  addStat={this.addStat}
                   testName={this.uniqueTestNames[this.state.currentStatInd]}
                   athlete={this.props.athleteInfo}
                   toggleStatForm={this.toggleStatForm}
@@ -167,7 +158,9 @@ class AthleteProfile extends Component {
                 <NewStatForm
                   athlete={this.props.athleteInfo}
                   testNames={this.uniqueTestNames}
+                  addStat={this.props.addStat}
                   toggleStatForm={this.toggleStatForm}
+                  athleteUrl={this.props.athleteUrl}
                 />
               ) : null}
               </Container>
@@ -180,15 +173,16 @@ class AthleteProfile extends Component {
                 <NewInjuryForm
                   athlete={this.props.athleteInfo}
                   toggleInjuryForm={this.toggleInjuryForm}
+                  addInjury={this.props.addInjury}
                 />
               ) : null}
             </Container>
           )}
         </div>
         {this.state.injuryTableShowing === true ? (
-        <AthleteInjuryTable injuries={this.injuries}/>) : null}
+        <AthleteInjuryTable injuries={this.injuries} deleteInjury={this.props.deleteInjury}/>) : null}
         {this.state.performanceTableShowing === true ? (
-        <AthletePerformanceTable stats={this.stats}/>) : null}
+        <AthletePerformanceTable stats={this.stats} deleteStat={this.props.deleteStat}/>) : null}
       </div>
     );
   }
