@@ -52,17 +52,17 @@ class App extends Component {
       })
     );
   };
-fetchAthletes = () => {
-  trackPromise(
-    api.athletes.getAthletes().then((data) => {
-      this.setState({
-        athletes: data.filter((athlete) => {
-          return athlete.user_id === this.state.auth.user.id;
-        }),
-      });
-    }))}
-  
-  
+  fetchAthletes = () => {
+    trackPromise(
+      api.athletes.getAthletes().then((data) => {
+        this.setState({
+          athletes: data.filter((athlete) => {
+            return athlete.user_id === this.state.auth.user.id;
+          }),
+        }, () => console.log(this.state.athletes));
+      })
+    );
+  };
 
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -89,16 +89,16 @@ fetchAthletes = () => {
   }
 
   addTeam = (team) => {
-    api.teams
-    .createTeam(team)
-    .then((res) => {
-     this.fetchTeams();
-    })
+    api.teams.createTeam(team).then((res) => {
+      this.fetchTeams();
+    });
   };
 
-  // addAthlete = (athlete) => {
-  //   this.setState({...this.state.athletes, athlete})
-  // }
+  addAthlete = (athlete) => {
+    api.athletes.createAthlete(athlete).then((res) => {
+      this.fetchTeams();
+    });
+  };
 
   items = [
     { name: "home", label: "Home" },
@@ -222,8 +222,9 @@ fetchAthletes = () => {
                       {...props}
                       userId={this.state.auth.user.id}
                       teamInfo={team}
-                      addTeam={this.addTeam}
+                      addAthlete={this.addAthlete}
                       athletes={team.athletes}
+                      allAthletes={this.state.athletes}
                     />
                   )}
                 />

@@ -5,32 +5,31 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
 class NewAthleteForm extends Component {
+  state = {
+    first_name: "",
+    last_name: "",
+    year: "",
+    image: "",
+  };
 
-    state = {
-        first_name: "",
-        last_name: "",
-        year: "",
-        image: ""
-    }
+  handleChange = (e) => {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value,
+      user_id: this.props.userId,
+      team_id: this.props.teamId,
+    });
+  };
 
-    handleChange = (e) => {
-        this.setState({
-            ...this.state, 
-            [e.target.name]: e.target.value,
-            user_id: this.props.userId,
-            team_id: this.props.teamId
-        })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault()
-        // this.props.addAthlete(this.state)
-        api.athletes.createAthlete(this.state)
-    }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addAthlete(this.state);
+    this.props.history.push(`/team/${this.props.teamId}`);
+  };
 
   render() {
     return (
-      <div style={{marginLeft: 200, marginTop: 20}}>
+      <div style={{ marginLeft: 200, marginTop: 20 }}>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>
@@ -59,12 +58,21 @@ class NewAthleteForm extends Component {
             <Form.Group>
               <Form.Label>Year</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter Year"
+                as="select"
+                placeholder="Select Year"
                 name="year"
                 value={this.state.year}
                 onChange={this.handleChange}
-              />
+              >
+                <option disabled defaultValue>
+                  -- Select a Year --
+                </option>
+                <option>Freshman</option>
+                <option>Sophomore</option>
+                <option>Junior</option>
+                <option>Senior</option>
+                <option>Super Senior</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group>

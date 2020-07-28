@@ -250,7 +250,7 @@ class TeamProfile extends Component {
                 {...props}
                 userId={this.props.userId}
                 teamId={this.props.teamInfo.id}
-                addTeam={this.props.addTeam}
+                addAthlete={this.props.addAthlete}
               />
             )}
           />
