@@ -35,6 +35,7 @@ class App extends Component {
       },
     });
     this.fetchUser()
+    this.fetchTeams()
   };
 
   logout = () => {
