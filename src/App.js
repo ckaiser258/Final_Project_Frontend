@@ -34,6 +34,7 @@ class App extends Component {
         },
       },
     });
+    this.fetchUser()
   };
 
   logout = () => {
@@ -41,10 +42,29 @@ class App extends Component {
     this.setState({ auth: { user: {} } });
   };
 
+  fetchUser = () => {
+    trackPromise(
+      api.auth.getCurrentUser().then((data) => {
+        this.setState({
+          auth: {
+            ...this.state.auth,
+            user: {
+              id: data.user.id,
+              username: data.user.username,
+              first_name: data.user.first_name,
+              last_name: data.user.last_name,
+              email: data.user.email,
+            },
+          },
+        });
+      })
+    );
+  };
+
   fetchTeams = () => {
     trackPromise(
       api.teams.getTeams().then((data) => {
-        console.log(data)
+        console.log(data);
         this.setState({
           teams: data.filter((team) => {
             return team.user_id === this.state.auth.user.id;
@@ -56,11 +76,14 @@ class App extends Component {
   fetchAthletes = () => {
     trackPromise(
       api.athletes.getAthletes().then((data) => {
-        this.setState({
-          athletes: data.filter((athlete) => {
-            return athlete.user_id === this.state.auth.user.id;
-          }),
-        }, () => console.log(this.state.athletes));
+        this.setState(
+          {
+            athletes: data.filter((athlete) => {
+              return athlete.user_id === this.state.auth.user.id;
+            }),
+          },
+          () => console.log(this.state.athletes)
+        );
       })
     );
   };
@@ -68,22 +91,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
-      trackPromise(
-        api.auth.getCurrentUser().then((data) => {
-          this.setState({
-            auth: {
-              ...this.state.auth,
-              user: {
-                id: data.user.id,
-                username: data.user.username,
-                first_name: data.user.first_name,
-                last_name: data.user.last_name,
-                email: data.user.email,
-              },
-            },
-          });
-        })
-      );
+      this.fetchUser();
       this.fetchTeams();
       this.fetchAthletes();
     }
@@ -274,13 +282,15 @@ class App extends Component {
                   key={athlete.id}
                   path={`/${athlete.id}/${athleteUrl}`}
                   render={(props) => (
-                    <AthleteProfile {...props} athleteInfo={athlete} 
-                    fetchAthletes={this.fetchAthletes}
-                    fetchTeams={this.fetchTeams}
-                    addStat={this.addStat}
-                    addInjury={this.addInjury}
-                    deleteStat={this.deleteStat}
-                     />
+                    <AthleteProfile
+                      {...props}
+                      athleteInfo={athlete}
+                      fetchAthletes={this.fetchAthletes}
+                      fetchTeams={this.fetchTeams}
+                      addStat={this.addStat}
+                      addInjury={this.addInjury}
+                      deleteStat={this.deleteStat}
+                    />
                   )}
                 />
               );
