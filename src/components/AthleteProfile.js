@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
+import { api } from "../services/api";
 import AthletePerformanceGraph from "./Graphs.js/AthletePerformanceGraph";
 import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
 import NewStatForm from "./forms/NewStatForm";
-import NewInjuryForm from "./forms/NewInjuryForm"
-import AthleteInjuryTable from "./tables/AthleteInjuryTable"
-import AthletePerformanceTable from "./tables/AthletePerformanceTable"
+import NewInjuryForm from "./forms/NewInjuryForm";
+import AthleteInjuryTable from "./tables/AthleteInjuryTable";
+import AthletePerformanceTable from "./tables/AthletePerformanceTable";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -20,11 +21,61 @@ class AthleteProfile extends Component {
     statChartShowing: true,
     injuryChartShowing: false,
     injuryTableShowing: false,
-    performanceTableShowing: false
+    performanceTableShowing: false,
   };
 
   updateCurrentStatInd = (index) => {
     this.setState({ currentStatInd: index });
+  };
+
+  fetchStats = () => {
+    api.performance.getStats().then((data) => {
+      this.setState(
+        {
+          stats: data.filter((stat) => {
+            return stat.athlete_id === this.props.athleteInfo.id;
+          }),
+        },
+        () => console.log(this.state.stats)
+      );
+    });
+  };
+
+  fetchInjuries = () => {
+    api.performance.getInjuries().then((data) => {
+      this.setState(
+        {
+          injuries: data.filter((injury) => {
+            return injury.athlete_id === this.props.athleteInfo.id;
+          }),
+        },
+        () => console.log(this.state.injuries)
+      );
+    });
+  };
+
+  addStat = (stat) => {
+    api.performance.createStat(stat).then((res) => {
+      this.fetchStats();
+    });
+  };
+
+  addInjury = (injury) => {
+    api.performance.createInjury(injury).then((res) => {
+      this.fetchInjuries();
+    });
+  };
+
+  deleteStat = (stat) => {
+    api.performance.deleteStat(stat).then((res) => {
+      this.fetchStats();
+    });
+  };
+
+  deleteInjury = (injury) => {
+    api.performance.deleteInjury(injury).then((res) => {
+      this.fetchInjuries();
+    });
   };
 
   stats = this.props.athleteInfo.stats;
@@ -109,7 +160,9 @@ class AthleteProfile extends Component {
             {this.props.athleteInfo.first_name}{" "}
             {this.props.athleteInfo.last_name}
           </Typography>
-          <Typography gutterBottom variant="h5" component="h4">{this.props.athleteInfo.year}</Typography>
+          <Typography gutterBottom variant="h5" component="h4">
+            {this.props.athleteInfo.year}
+          </Typography>
         </Jumbotron>
         <div>
           <Button onClick={this.switchCharts}>
@@ -142,8 +195,8 @@ class AthleteProfile extends Component {
               </ul>
               <Container>
                 <AthletePerformanceGraph
-                  stats={this.props.athleteInfo.stats}
-                  currentTests={this.stats.filter(
+                  stats={this.state.stats}
+                  currentTests={this.state.stats.filter(
                     (stat) =>
                       stat.test_name ===
                       this.uniqueTestNames[this.state.currentStatInd]
@@ -155,34 +208,46 @@ class AthleteProfile extends Component {
                   tableShowing={this.state.performanceTableShowing}
                 />
                 {this.state.statFormShowing === true ? (
-                <NewStatForm
-                  athlete={this.props.athleteInfo}
-                  testNames={this.uniqueTestNames}
-                  addStat={this.props.addStat}
-                  toggleStatForm={this.toggleStatForm}
-                  athleteUrl={this.props.athleteUrl}
-                />
-              ) : null}
+                  <NewStatForm
+                    athlete={this.props.athleteInfo}
+                    testNames={this.uniqueTestNames}
+                    addStat={this.addStat}
+                    toggleStatForm={this.toggleStatForm}
+                    athleteUrl={this.props.athleteUrl}
+                  />
+                ) : null}
               </Container>
             </Fragment>
           ) : (
             <Container>
-              <AthleteInjuryGraph injuries={this.injuries} toggleInjuryForm={this.toggleInjuryForm}
-              toggleInjuryTable={this.toggleInjuryTable} />
-                {this.state.injuryFormShowing === true ? (
+              <AthleteInjuryGraph
+                injuries={this.state.injuries}
+                toggleInjuryForm={this.toggleInjuryForm}
+                toggleInjuryTable={this.toggleInjuryTable}
+              />
+              {this.state.injuryFormShowing === true ? (
                 <NewInjuryForm
                   athlete={this.props.athleteInfo}
                   toggleInjuryForm={this.toggleInjuryForm}
-                  addInjury={this.props.addInjury}
+                  addInjury={this.addInjury}
+                  addStat={this.addStat}
                 />
               ) : null}
             </Container>
           )}
         </div>
         {this.state.injuryTableShowing === true ? (
-        <AthleteInjuryTable injuries={this.injuries} deleteInjury={this.props.deleteInjury}/>) : null}
+          <AthleteInjuryTable
+            injuries={this.state.injuries}
+            deleteInjury={this.deleteInjury}
+          />
+        ) : null}
         {this.state.performanceTableShowing === true ? (
-        <AthletePerformanceTable stats={this.stats} deleteStat={this.props.deleteStat}/>) : null}
+          <AthletePerformanceTable
+            stats={this.state.stats}
+            deleteStat={this.deleteStat}
+          />
+        ) : null}
       </div>
     );
   }

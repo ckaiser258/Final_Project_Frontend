@@ -3,6 +3,7 @@ import { trackPromise } from "react-promise-tracker";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
+import EditUser from "./components/forms/EditUserForm"
 import ProfilePage from "./components/ProfilePage";
 import TeamsContainer from "./containers/TeamsContainer";
 import TeamProfile from "./components/TeamProfile";
@@ -111,17 +112,17 @@ class App extends Component {
     });
   };
 
-  addStat = (stat) => {
-    api.performance.createStat(stat).then((res) => {
-      this.fetchTeams();
-    });
-  };
+  // addStat = (stat) => {
+  //   api.performance.createStat(stat).then((res) => {
+  //     this.fetchTeams();
+  //   });
+  // };
 
-  addInjury = (injury) => {
-    api.performance.createInjury(injury).then((res) => {
-      this.fetchTeams();
-    });
-  };
+  // addInjury = (injury) => {
+  //   api.performance.createInjury(injury).then((res) => {
+  //     this.fetchTeams();
+  //   });
+  // };
 
   deleteTeam = (team) => {
     api.teams.deleteTeam(team).then((res) => {
@@ -135,11 +136,11 @@ class App extends Component {
     });
   };
 
-  deleteStat = (stat) => {
-    api.performance.deleteStat(stat).then((res) => {
-      this.fetchTeams();
-    });
-  };
+  // deleteStat = (stat) => {
+  //   api.performance.deleteStat(stat).then((res) => {
+  //     this.fetchTeams();
+  //   });
+  // };
 
   items = [
     { name: "home", label: "Home" },
@@ -230,6 +231,11 @@ class App extends Component {
               exact
               path="/"
               render={(props) => <Login {...props} onLogin={this.login} />}
+            />
+              <Route
+              exact
+              path="/edit-account"
+              render={(props) => <EditUser {...props} currentUser={this.state.auth.user} />}
             />
             <Route
               exact

@@ -20,7 +20,7 @@ export default function AthleteInjuryTable(props) {
   const classes = useStyles();
 
   let handleDelete = (injury) => {
-    api.performance.deleteInjury(injury);
+   props.deleteInjury(injury);
   };
 
   return (

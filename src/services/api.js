@@ -31,6 +31,13 @@ const getStats = () => {
     .then (res => res.json())
 }
 
+const getInjuries = () => {
+    return fetch(`${API_ROOT}/injuries/`, {
+        headers: headers()
+    })
+    .then (res => res.json())
+}
+
 const login = data => {
     return fetch(`${API_ROOT}/login`, {
         method: "POST",
@@ -155,6 +162,7 @@ export const api = {
         createStat,
         createInjury,
         getStats,
+        getInjuries,
         deleteStat,
         deleteInjury
     }
