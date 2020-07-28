@@ -46,6 +46,7 @@ class TeamsContainer extends Component {
               key={team.id}
               teamInfo={team}
               userId={this.props.userId}
+              deleteTeam={this.props.deleteTeam}
             />
           );
         })}

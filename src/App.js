@@ -97,6 +97,33 @@ class App extends Component {
   addAthlete = (athlete) => {
     api.athletes.createAthlete(athlete).then((res) => {
       this.fetchTeams();
+      this.fetchAthletes();
+    });
+  };
+
+  addStat = (stat) => {
+    api.performance.createStat(stat).then((res) => {
+      this.fetchTeams();
+      this.fetchAthletes();
+    });
+  };
+
+  addInjury = (injury) => {
+    api.performance.createInjury(injury).then((res) => {
+      this.fetchTeams();
+      this.fetchAthletes();
+    });
+  };
+
+  deleteTeam = (team) => {
+    api.teams.deleteTeam(team).then((res) => {
+      this.fetchTeams();
+    });
+  };
+
+  deleteAthlete = (athlete) => {
+    api.athletes.deleteAthlete(athlete).then((res) => {
+      this.fetchTeams();
     });
   };
 
@@ -209,6 +236,7 @@ class App extends Component {
                   userId={this.state.auth.user.id}
                   teams={this.state.teams}
                   addTeam={this.addTeam}
+                  deleteTeam={this.deleteTeam}
                 />
               )}
             />
@@ -223,8 +251,8 @@ class App extends Component {
                       userId={this.state.auth.user.id}
                       teamInfo={team}
                       addAthlete={this.addAthlete}
+                      deleteAthlete={this.deleteAthlete}
                       athletes={team.athletes}
-                      allAthletes={this.state.athletes}
                     />
                   )}
                 />
@@ -241,7 +269,12 @@ class App extends Component {
                   key={athlete.id}
                   path={`/${athlete.id}/${athleteUrl}`}
                   render={(props) => (
-                    <AthleteProfile {...props} athleteInfo={athlete} />
+                    <AthleteProfile {...props} athleteInfo={athlete} 
+                    fetchAthletes={this.fetchAthletes}
+                    fetchTeams={this.fetchTeams}
+                    addStat={this.addStat}
+                    addInjury={this.addInjury}
+                     />
                   )}
                 />
               );

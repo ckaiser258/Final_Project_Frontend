@@ -21,7 +21,7 @@ const handleImageError = (e) => {
 const TeamCard = (props) => {
 
   let handleDelete = () => {
-    api.teams.deleteTeam(props.teamInfo)
+    props.deleteTeam(props.teamInfo)
   }
 
   return props.teamInfo.user_id === props.userId ? (
