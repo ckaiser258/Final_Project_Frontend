@@ -25,7 +25,7 @@ const AthleteCard = (props) => {
     .toLowerCase()}`;
 
   let handleDelete = () => {
-    api.athletes.deleteAthlete(props.athleteInfo);
+    props.deleteAthlete(props.athleteInfo)
   };
 
   return (

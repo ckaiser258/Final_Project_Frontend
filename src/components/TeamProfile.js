@@ -215,7 +215,7 @@ class TeamProfile extends Component {
             }}
           >
             {this.props.athletes.map((athlete) => {
-              return <AthleteCard key={athlete.id} athleteInfo={athlete} />;
+              return <AthleteCard key={athlete.id} athleteInfo={athlete} deleteAthlete={this.props.deleteAthlete}/>;
             })}
           </div>
           <div style={{ paddingTop: 50 }}>
