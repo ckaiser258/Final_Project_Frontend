@@ -50,17 +50,29 @@ class TeamsContainer extends Component {
             />
           );
         })}
+        
           <Grid container spacing={1}>
             <Grid container item xs={12} spacing={3}>
               <NavLink to="/teams/create-team" exact>
                 <Paper elevation={3} style={{borderRadius: "50%", margin: 50, marginTop: 75}} >
-                  <img style={{maxWidth: 200, maxHeight: 225, borderRadius: 100}}src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png" alt="Plus Sign"/>
+                  <img style={{maxWidth: 200, maxHeight: 225, borderRadius: 100}}src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png" alt="Plus Sign" data-toggle="modal" data-target="#exampleModal"/>
                 </Paper>
               </NavLink>
             </Grid>
           </Grid>
         </div>
-        <Route
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Team</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <Route
           path="/teams/create-team"
           render={(props) => (
             <NewTeamForm
@@ -71,6 +83,10 @@ class TeamsContainer extends Component {
             />
           )}
         />
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     );
   }

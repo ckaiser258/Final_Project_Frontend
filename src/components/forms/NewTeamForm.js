@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import $ from "jquery"
 
 class NewTeamForm extends Component {
   state = {
@@ -22,11 +23,15 @@ class NewTeamForm extends Component {
     this.props.addTeam(this.state)
     this.props.history.push("/teams");
     // this.props.showSuccessAlert()
+    $('#button').submit(function(e) {
+      // Coding
+      $('#IDModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+  });
   };
 
   render() {
     return (
-      <div style={{ marginLeft: 200, marginTop: 20 }}>
+      <div>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>

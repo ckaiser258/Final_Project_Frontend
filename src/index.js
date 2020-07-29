@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
+import $ from "jquery"
 
 export default function LoadingIndicator(props) {
   const { promiseInProgress } = usePromiseTracker();
