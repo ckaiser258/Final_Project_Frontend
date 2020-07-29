@@ -20,3 +20,10 @@ code {
 .sidebar-subitem-text {
   font-size: 0.8rem;
 }
+
+.athlete-pic {
+  margin-left: 170px;
+  max-width: 110px;
+  max-height: 110px;
+  border-radius: 50%;
+}

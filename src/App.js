@@ -166,10 +166,9 @@ class App extends Component {
           <span> Teams</span>
         </>
       ),
-      // items: [
-      //   { name: "statements", label: "Statements" },
-      //   { name: "reports", label: "Reports" },
-      // ],
+      items: this.state.teams.map(team => {
+        return {name: `team/${team.id}`, label: team.name}
+      })
     },
     {
       name: "edit-profile",
@@ -178,7 +177,8 @@ class App extends Component {
           <span style={{ fontFamily: "Roboto" }}> Edit Profile</span>{" "}
         </i>
       ),
-      // items: [
+      // items:
+      //  [
       //   { name: "profile", label: "Profile" },
       //   { name: "insurance", label: "Insurance" },
       //   {

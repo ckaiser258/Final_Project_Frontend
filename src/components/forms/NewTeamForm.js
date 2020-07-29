@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import $ from "jquery"
 
 class NewTeamForm extends Component {
+
   state = {
     name: "",
     logo: "",
@@ -22,11 +22,8 @@ class NewTeamForm extends Component {
     e.preventDefault();
     this.props.addTeam(this.state)
     this.props.history.push("/teams");
+    document.getElementById("close-button").click()
     // this.props.showSuccessAlert()
-    $('#button').submit(function(e) {
-      // Coding
-      $('#IDModal').modal('toggle'); //or  $('#IDModal').modal('hide');
-  });
   };
 
   render() {

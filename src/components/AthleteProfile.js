@@ -152,17 +152,31 @@ class AthleteProfile extends Component {
 
   injuries = this.props.athleteInfo.injuries;
 
+  handleImageError = (e) => {
+    e.target.src =
+      "https://st3.depositphotos.com/4430281/13950/v/450/depositphotos_139504752-stock-illustration-muscular-sprinter-runner.jpg";
+  };
+
   render() {
     return (
       <div className="text-center" style={{ paddingRight: 100 }}>
         <Jumbotron>
-          <Typography gutterBottom variant="h2" component="h4">
-            {this.props.athleteInfo.first_name}{" "}
-            {this.props.athleteInfo.last_name}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h4">
-            {this.props.athleteInfo.year}
-          </Typography>
+          <div className="row" >
+            <img src={this.props.athleteInfo.image} className="athlete-pic" onError={this.handleImageError}/>{" "}
+            <div style={{marginRight: "auto", marginLeft: "110"}}>
+              <Typography
+                gutterBottom
+                variant="h2"
+                component="h4"
+              >
+                {this.props.athleteInfo.first_name}{" "}
+                {this.props.athleteInfo.last_name}
+              </Typography>
+              <Typography gutterBottom variant="h5" component="h4">
+                {this.props.athleteInfo.year}
+              </Typography>
+            </div>
+          </div>
         </Jumbotron>
         <div>
           <Button onClick={this.switchCharts}>
