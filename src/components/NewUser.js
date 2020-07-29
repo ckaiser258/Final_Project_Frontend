@@ -27,7 +27,7 @@ class CreateAccount extends Component {
       .createUser(this.state.fields)
       .then((res) => {
         this.props.onCreate(res);
-        this.props.history.push('/home')
+        this.props.history.push('/')
         console.log(res);
       })
       .catch((error) => alert(error.message));
