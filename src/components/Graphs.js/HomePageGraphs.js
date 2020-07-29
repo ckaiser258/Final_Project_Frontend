@@ -149,33 +149,33 @@ const HomePageGraphs = (props) => {
         },
       }}
     />
-  //   <Doughnut
-  //   data={injuryData}
-  //   height={325}
-  //   width={425}
-  //   options={{
-  //     maintainAspectRatio: false,
-  //     title: {
-  //       display: true,
-  //       text: `${
-  //         props.teamInfo.injuries.length !== 0 ? `Injuries` : "No Data Available"
-  //       }`,
-  //       maintainAspectRatio: false,
-  //       fontSize: 20,
-  //     },
-  //     legend: {
-  //       display: true,
-  //       position: "right",
-  //     },
-  //     layout: {
-  //       padding: {
-  //         left: 100,
-  //         top: 25,
-  //         bottom: 20,
-  //       },
-  //     },
-  //   }}
-  // />
+    //   <Doughnut
+    //   data={injuryData}
+    //   height={325}
+    //   width={425}
+    //   options={{
+    //     maintainAspectRatio: false,
+    //     title: {
+    //       display: true,
+    //       text: `${
+    //         props.teamInfo.injuries.length !== 0 ? `Injuries` : "No Data Available"
+    //       }`,
+    //       maintainAspectRatio: false,
+    //       fontSize: 20,
+    //     },
+    //     legend: {
+    //       display: true,
+    //       position: "right",
+    //     },
+    //     layout: {
+    //       padding: {
+    //         left: 100,
+    //         top: 25,
+    //         bottom: 20,
+    //       },
+    //     },
+    //   }}
+    // />
   );
 };
 

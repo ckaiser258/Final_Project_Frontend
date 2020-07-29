@@ -23,11 +23,10 @@ class NewInjuryForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addInjury(this.state)
-    this.props.toggleInjuryForm()
-    document.getElementById("close-button").click()
+    this.props.addInjury(this.state);
+    this.props.toggleInjuryForm();
+    document.getElementById("close-button").click();
   };
-
 
   render() {
     return (
@@ -43,11 +42,10 @@ class NewInjuryForm extends Component {
                 name="site"
                 value={this.state.site}
                 onChange={this.handleChange}
-              >
-              </Form.Control>
+              ></Form.Control>
             </Form.Group>
             <Form.Group>
-            <Form.Label>Description</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
                 rows="2"
@@ -66,11 +64,12 @@ class NewInjuryForm extends Component {
                 type="number"
                 placeholder="Severity"
                 name="severity"
-                min="1" max="5"
+                min="1"
+                max="5"
                 value={this.state.severity}
                 onChange={this.handleChange}
               />
-                <Form.Text className="text-muted">
+              <Form.Text className="text-muted">
                 This can be subjective or discussed with your athletic trainer.
               </Form.Text>
             </Form.Group>

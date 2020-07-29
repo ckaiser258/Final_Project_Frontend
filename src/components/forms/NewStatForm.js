@@ -10,8 +10,6 @@ class NewStatForm extends Component {
     date: "",
   };
 
-
-
   handleChange = (e) => {
     // return this.props.teamAthletes ? (null) : (
     this.setState({
@@ -19,17 +17,16 @@ class NewStatForm extends Component {
       [e.target.name]: e.target.value,
       athlete_id: this.props.athlete.id,
       team_id: this.props.athlete.team_id,
-    })
+    });
     //)
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addStat(this.state)
-    this.props.toggleStatForm()
-    document.getElementById("close-button").click()
+    this.props.addStat(this.state);
+    this.props.toggleStatForm();
+    document.getElementById("close-button").click();
   };
-
 
   render() {
     return (
@@ -37,7 +34,7 @@ class NewStatForm extends Component {
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>
-          {/* {this.props.teamAthletes ? (<Form.Group>
+            {/* {this.props.teamAthletes ? (<Form.Group>
               <Form.Label>Select an Athlete</Form.Label>
               <Form.Control
                 as="select"
@@ -60,9 +57,7 @@ class NewStatForm extends Component {
                 value={this.state.test_name}
                 onChange={this.handleChange}
               >
-                <option disabled>
-                  -- Choose From Past Tests --
-                </option>
+                <option disabled>-- Choose From Past Tests --</option>
                 {this.props.testNames.map((testName) => {
                   return <option key={testName}>{testName}</option>;
                 })}

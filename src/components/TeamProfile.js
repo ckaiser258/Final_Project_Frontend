@@ -27,6 +27,11 @@ class TeamProfile extends Component {
     injuryTableShowing: false,
   };
 
+  handleImageError = (e) => {
+    e.target.src =
+      "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/307/2020/06/26000313/sport.png";
+  };
+
   updateCurrentStatInd = (index) => {
     this.setState({ currentStatInd: index });
   };
@@ -118,13 +123,20 @@ class TeamProfile extends Component {
   render() {
     return (
       <div className="text-center" style={{ paddingRight: 100 }}>
-        <div>
-          <Jumbotron>
-            <Typography gutterBottom variant="h2" component="h4">
-              {this.props.teamInfo && this.props.teamInfo.name}
-            </Typography>
-          </Jumbotron>
-        </div>
+        <Jumbotron>
+          <div className="row">
+            <img
+              src={this.props.teamInfo.logo}
+              className="team-pic"
+              onError={this.handleImageError}
+            />{" "}
+            <div style={{ marginRight: "auto", marginLeft: "110", marginTop: "auto" }}>
+              <Typography gutterBottom variant="h2" component="h4">
+                {this.props.teamInfo.name}{" "}
+              </Typography>
+            </div>
+          </div>
+        </Jumbotron>
         <div>
           <Button onClick={this.switchCharts}>
             {" "}
