@@ -70,6 +70,23 @@ const createUser = data => {
     .catch(error => alert(error.message))
 }
 
+const editUser = data => {
+    let obj = {
+        id: data.fields.id,
+        first_name: data.fields.first_name,
+        last_name: data.fields.last_name,
+        username: data.fields.username,
+        email: data.fields.email,
+        password: data.fields.password
+    }
+    return fetch(`${API_ROOT}/users/${data.fields.id}`, {
+        method: "PATCH",
+        headers: headers(),
+        body: JSON.stringify({"user": obj})
+    })
+    .catch(error => alert(error.message))
+}
+
 const createTeam = (data) => {
     return fetch(`${API_ROOT}/teams`, {
         method: "POST",
@@ -146,7 +163,8 @@ export const api = {
     auth: {
         login,
         getCurrentUser,
-        createUser
+        createUser,
+        editUser
     },
     teams : {
         getTeams,

@@ -103,7 +103,6 @@ class CreateAccount extends Component {
               type="password"
               placeholder="Confirm Password"
               name="password"
-              onChange={this.handleChange}
             />
           </Form.Group>
 

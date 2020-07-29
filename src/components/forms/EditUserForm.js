@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { api } from "../../services/api"
-import { Form, Button, Container } from "react-bootstrap";
+import React, { Component, Fragment } from "react";
+import { api } from "../../services/api";
+import { Form, Button, Jumbotron, Container } from "react-bootstrap";
+import { Typography } from "@material-ui/core";
 
 class EditUser extends Component {
   state = {
@@ -15,103 +16,112 @@ class EditUser extends Component {
   };
 
   handleChange = (e) => {
-    const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
+    const newFields = {
+      ...this.state.fields,
+      [e.target.name]: e.target.value,
+      id: this.props.currentUser.id,
+    };
     this.setState({ fields: newFields });
+
     console.log(this.state.fields);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    api.auth
-      .createUser(this.state.fields)
-      .then((res) => {
-        this.props.onCreate(res);
-        this.props.history.push('/home')
-        console.log(res);
-      })
-      .catch((error) => alert(error.message));
+    this.props.patchUser(this.state);
   };
 
   render() {
     const { fields } = this.state;
     return (
-      <div>
-        {this.state.error ? <h1>Try again...</h1> : null}
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter First Name"
-              name="first_name"
-              value={fields.first_name}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+      <Fragment>
+        <div style={{ paddingRight: 100 }}>
+          <Jumbotron className="text-center">
+            <Typography gutterBottom variant="h2" component="h4">
+              Edit Account
+            </Typography>
+          </Jumbotron>
+          {this.state.error ? <h1>Try again...</h1> : null}
+          <Container style={{ width: 600 }}>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group>
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  defaultValue={this.props.currentUser.first_name}
+                  name="first_name"
+                  value={fields.first_name}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Last Name"
-              name="last_name"
-              value={fields.last_name}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  defaultValue={this.props.currentUser.last_name}
+                  name="last_name"
+                  value={fields.last_name}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label> Username </Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Username"
-              name="username"
-              value={fields.username}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+              <Form.Group>
+                <Form.Label> Username </Form.Label>
+                <Form.Control
+                  type="text"
+                  defaultValue={this.props.currentUser.username}
+                  name="username"
+                  value={fields.username}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Email"
-              name="email"
-              value={fields.email}
-              onChange={this.handleChange}
-            />
-            <Form.Text className="text-muted">(We won't spam you)</Form.Text>
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  defaultValue={this.props.currentUser.email}
+                  name="email"
+                  value={fields.email}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              value={fields.password}
-              onChange={this.handleChange}
-            />
+              <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Password"
+                  name="password"
+                  value={fields.password}
+                  onChange={this.handleChange}
+                />
                 <Form.Text className="text-muted">
-                Your password must be 5-20 characters long.
-              </Form.Text>
-          </Form.Group>
+                  Your password must be 5-20 characters long.
+                </Form.Text>
+              </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Password Confirmation</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm Password"
-              name="password"
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+              <Form.Group>
+                <Form.Label>Password Confirmation</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="password"
+                />
+              </Form.Group>
 
-          <Button variant="success" type="submit">
-            Create Account
-          </Button>
-        </Form>
-      </div>
+              <Button
+                variant="success"
+                type="submit"
+                style={{ marginBottom: 10 }}
+              >
+                Edit Account
+              </Button>
+            </Form>
+          </Container>
+        </div>
+      </Fragment>
     );
   }
 }

@@ -90,6 +90,13 @@ class App extends Component {
     );
   };
 
+  patchUser = (user) => {
+    api.auth.editUser(user)
+    .then((res) => {
+      this.fetchUser()
+    })
+  }
+
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -235,7 +242,7 @@ class App extends Component {
               <Route
               exact
               path="/edit-account"
-              render={(props) => <EditUser {...props} currentUser={this.state.auth.user} />}
+              render={(props) => <EditUser {...props} currentUser={this.state.auth.user} patchUser={this.patchUser}/>}
             />
             <Route
               exact
