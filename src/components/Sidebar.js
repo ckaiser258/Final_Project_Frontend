@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Paper from "@material-ui/core/Paper"
 import { Link } from "react-router-dom";
 
 const SidebarItem = ({ label, items, depthStep = 10, depth = 0, ...rest }) => {
@@ -30,11 +31,12 @@ const SidebarItem = ({ label, items, depthStep = 10, depth = 0, ...rest }) => {
 
 const Sidebar = ({ items, depthStep, depth, user }) => {
   return (
-    <div className="sidebar" style={{ paddingLeft: 25 }}>
+    <div className="sidebar" style={{ paddingLeft: 25}}>
+       <Paper style={{backgroundColor: "#F5F4E5"}}>
       <List disablePadding dense>
         <div
           style={{ marginBottom: 10 }}
-          style={{ color: "#F5C943", fontWeight: "bold" }}
+          style={{ color: "#F5B922", fontWeight: "bold", paddingLeft: 8 }}
         >
           {user.first_name} {user.last_name}
         </div>
@@ -49,6 +51,7 @@ const Sidebar = ({ items, depthStep, depth, user }) => {
           </Link>
         ))}
       </List>
+      </Paper>
     </div>
   );
 };

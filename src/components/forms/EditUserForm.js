@@ -37,7 +37,7 @@ class EditUser extends Component {
     return (
       <Fragment>
         <div style={{ paddingRight: 100 }}>
-          <Jumbotron className="text-center">
+          <Jumbotron className="text-center" style={{ marginBottom: 60 }}>
             <Typography gutterBottom variant="h2" component="h4">
               Edit Profile
             </Typography>

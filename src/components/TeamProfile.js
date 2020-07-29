@@ -237,13 +237,26 @@ class TeamProfile extends Component {
                       }}
                       src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
                       alt="Plus Sign"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
                     />
                   </Paper>
                 </NavLink>
               </Grid>
             </Grid>
           </div>
-          <Route
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" id="close-button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <Route
             path={`/team/${this.props.teamInfo.id}/add-athlete`}
             render={(props) => (
               <NewAthleteForm
@@ -254,6 +267,10 @@ class TeamProfile extends Component {
               />
             )}
           />
+      </div>
+    </div>
+  </div>
+</div>
         </div>
   ) : null}
       </div>

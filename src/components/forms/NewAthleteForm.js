@@ -25,11 +25,12 @@ class NewAthleteForm extends Component {
     e.preventDefault();
     this.props.addAthlete(this.state);
     this.props.history.push(`/team/${this.props.teamId}`);
+    document.getElementById("close-button").click()
   };
 
   render() {
     return (
-      <div style={{ marginLeft: 200, marginTop: 20 }}>
+      <div>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>
