@@ -267,6 +267,31 @@ class AthleteProfile extends Component {
                 toggleInjuryForm={this.toggleInjuryForm}
                 toggleInjuryTable={this.toggleInjuryTable}
               />
+                                <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            New Injury
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            id="close-button"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body"></div>
              
                 <NewInjuryForm
                   athlete={this.props.athleteInfo}
@@ -274,6 +299,9 @@ class AthleteProfile extends Component {
                   addInjury={this.addInjury}
                   addStat={this.addStat}
                 />
+                      </div>
+                    </div>
+                  </div>
             </Container>
           )}
         </div>

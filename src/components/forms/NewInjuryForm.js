@@ -25,12 +25,13 @@ class NewInjuryForm extends Component {
     e.preventDefault();
     this.props.addInjury(this.state)
     this.props.toggleInjuryForm()
+    document.getElementById("close-button").click()
   };
 
 
   render() {
     return (
-      <div style={{ marginLeft: 200, marginTop: 20 }}>
+      <div>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>
