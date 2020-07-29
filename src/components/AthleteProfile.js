@@ -221,15 +221,43 @@ class AthleteProfile extends Component {
                   togglePerformanceTable={this.togglePerformanceTable}
                   tableShowing={this.state.performanceTableShowing}
                 />
-                {this.state.statFormShowing === true ? (
-                  <NewStatForm
-                    athlete={this.props.athleteInfo}
-                    testNames={this.uniqueTestNames}
-                    addStat={this.addStat}
-                    toggleStatForm={this.toggleStatForm}
-                    athleteUrl={this.props.athleteUrl}
-                  />
-                ) : null}
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Modal title
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            id="close-button"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <NewStatForm
+                            athlete={this.props.athleteInfo}
+                            testNames={this.uniqueTestNames}
+                            addStat={this.addStat}
+                            toggleStatForm={this.toggleStatForm}
+                            athleteUrl={this.props.athleteUrl}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
               </Container>
             </Fragment>
           ) : (
@@ -239,14 +267,13 @@ class AthleteProfile extends Component {
                 toggleInjuryForm={this.toggleInjuryForm}
                 toggleInjuryTable={this.toggleInjuryTable}
               />
-              {this.state.injuryFormShowing === true ? (
+             
                 <NewInjuryForm
                   athlete={this.props.athleteInfo}
                   toggleInjuryForm={this.toggleInjuryForm}
                   addInjury={this.addInjury}
                   addStat={this.addStat}
                 />
-              ) : null}
             </Container>
           )}
         </div>

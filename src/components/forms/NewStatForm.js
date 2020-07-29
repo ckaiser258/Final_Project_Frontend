@@ -27,13 +27,13 @@ class NewStatForm extends Component {
     e.preventDefault();
     this.props.addStat(this.state)
     this.props.toggleStatForm()
-    
+    document.getElementById("close-button").click()
   };
 
 
   render() {
     return (
-      <div style={{ marginLeft: 200, marginTop: 20 }}>
+      <div>
         {" "}
         <Container style={{ width: 400 }}>
           <Form onSubmit={this.handleSubmit}>

@@ -110,6 +110,8 @@ const AthletePerformanceGraph = (props) => {
         <Button
           onClick={props.toggleStatForm}
           style={{ marginTop: 5, marginBottom: 10 }}
+          data-toggle="modal"
+          data-target="#exampleModal"
         >
           Add Stat
         </Button>

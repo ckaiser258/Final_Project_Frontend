@@ -33,17 +33,15 @@ class TeamProfile extends Component {
 
   stats = this.props.teamInfo.stats;
 
-  averageStats = this.stats.map(stat => {
-
-  })
+  averageStats = this.stats.map((stat) => {});
 
   statsDates = this.stats.map((stat) => {
     return stat.date;
   });
 
   uniqueTestNames = this.stats
-  .map((stat) => stat.test_name)
-  .filter((value, index, self) => self.indexOf(value) === index);
+    .map((stat) => stat.test_name)
+    .filter((value, index, self) => self.indexOf(value) === index);
 
   injuries = this.props.teamInfo.injuries;
 
@@ -93,15 +91,15 @@ class TeamProfile extends Component {
 
   toggleAthletes = () => {
     this.state.athletesShowing === false
-    ? this.setState({
-        ...this.state,
-        athletesShowing: true,
-      })
-    : this.setState({
-        ...this.state,
-        athletesShowing: false,
-      });
-  }
+      ? this.setState({
+          ...this.state,
+          athletesShowing: true,
+        })
+      : this.setState({
+          ...this.state,
+          athletesShowing: false,
+        });
+  };
 
   switchCharts = () => {
     this.state.statChartShowing === true
@@ -168,7 +166,11 @@ class TeamProfile extends Component {
                   testName={this.uniqueTestNames[this.state.currentStatInd]}
                   toggleStatForm={this.toggleStatForm}
                 />
-                <Button onClick={this.toggleAthletes} style={{ marginTop: 20 }}>{this.state.athletesShowing ? "Hide Athletes" : "View / Add Athletes"}</Button>
+                <Button onClick={this.toggleAthletes} style={{ marginTop: 20 }}>
+                  {this.state.athletesShowing
+                    ? "Hide Athletes"
+                    : "View / Add Athletes"}
+                </Button>
                 {/* {this.state.statFormShowing === true ? (
                   <NewStatForm
                     teamAthletes={this.props.teamInfo.athletes}
@@ -203,78 +205,98 @@ class TeamProfile extends Component {
             athletes={this.props.athletes}
           />
         ) : null}
-        
-          { this.state.athletesShowing ? (
-        <div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 2fr 2fr 2fr 2fr 2fr",
-              gridGap: 10,
-              paddingRight: 40,
-            }}
-          >
-            {this.props.athletes.map((athlete) => {
-              return <AthleteCard key={athlete.id} athleteInfo={athlete} deleteAthlete={this.props.deleteAthlete}/>;
-            })}
-          </div>
-          <div style={{ paddingTop: 50 }}>
-            <Grid container spacing={1}>
-              <Grid container item xs={12} spacing={3}>
-                <NavLink
-                  to={`/team/${this.props.teamInfo.id}/add-athlete`}
-                  exact
-                >
-                  <Paper
-                    elevation={3}
-                    style={{ borderRadius: "50%", marginTop: 20 }}
-                  >
-                    <img
-                      style={{
-                        maxWidth: 170,
-                        maxHeight: 195,
-                        borderRadius: 100,
-                      }}
-                      src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
-                      alt="Plus Sign"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    />
-                  </Paper>
-                </NavLink>
-              </Grid>
-            </Grid>
-          </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" id="close-button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        {this.state.athletesShowing ? (
+          <div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "2fr 2fr 2fr 2fr 2fr 2fr",
+                gridGap: 10,
+                paddingRight: 40,
+              }}
+            >
+              {this.props.athletes.map((athlete) => {
+                return (
+                  <AthleteCard
+                    key={athlete.id}
+                    athleteInfo={athlete}
+                    deleteAthlete={this.props.deleteAthlete}
+                  />
+                );
+              })}
+            </div>
+            <div style={{ paddingTop: 50 }}>
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <NavLink
+                    to={`/team/${this.props.teamInfo.id}/add-athlete`}
+                    exact
+                  >
+                    <Paper
+                      elevation={3}
+                      style={{ borderRadius: "50%", marginTop: 20 }}
+                    >
+                      <img
+                        style={{
+                          maxWidth: 170,
+                          maxHeight: 195,
+                          borderRadius: 100,
+                        }}
+                        src="https://cdn2.iconfinder.com/data/icons/everything-but-the-kitchen-sink-2/100/common-06-512.png"
+                        alt="Plus Sign"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                      />
+                    </Paper>
+                  </NavLink>
+                </Grid>
+              </Grid>
+            </div>
+
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                     New Athlete
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      id="close-button"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <Route
+                      path={`/team/${this.props.teamInfo.id}/add-athlete`}
+                      render={(props) => (
+                        <NewAthleteForm
+                          {...props}
+                          userId={this.props.userId}
+                          teamId={this.props.teamInfo.id}
+                          addAthlete={this.props.addAthlete}
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
-      <div class="modal-body">
-      <Route
-            path={`/team/${this.props.teamInfo.id}/add-athlete`}
-            render={(props) => (
-              <NewAthleteForm
-                {...props}
-                userId={this.props.userId}
-                teamId={this.props.teamInfo.id}
-                addAthlete={this.props.addAthlete}
-              />
-            )}
-          />
-      </div>
-    </div>
-  </div>
-</div>
-        </div>
-  ) : null}
-      </div>
-            
     );
   }
 }
