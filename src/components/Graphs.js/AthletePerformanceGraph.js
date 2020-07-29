@@ -32,9 +32,11 @@ const AthletePerformanceGraph = (props) => {
     });
   });
 
-  let sortedAthletePerformanceTests = props.currentTests ? props.currentTests.sort(function (a, b) {
-    return new Date(a.date) - new Date(b.date);
-  }) : {}
+  let sortedAthletePerformanceTests = props.currentTests
+    ? props.currentTests.sort(function (a, b) {
+        return new Date(a.date) - new Date(b.date);
+      })
+    : {};
 
   const aggregateResults = () => {
     let sortedPerformanceTests = props.teamCurrentTests.sort(function (a, b) {
@@ -111,7 +113,7 @@ const AthletePerformanceGraph = (props) => {
           onClick={props.toggleStatForm}
           style={{ marginTop: 5, marginBottom: 10 }}
           data-toggle="modal"
-          data-target="#exampleModal"
+          data-target="#exampleModal3"
         >
           Add Stat
         </Button>
@@ -120,8 +122,10 @@ const AthletePerformanceGraph = (props) => {
         <Button
           onClick={props.togglePerformanceTable}
           style={{ marginTop: 5, marginBottom: 10 }}
+          data-toggle="modal"
+          data-target="#exampleModal3"
         >
-          {props.tableShowing ? "Hide Stats Table" : "View Stats Table"}
+          View Stats Table
         </Button>
       ) : null}
     </Fragment>

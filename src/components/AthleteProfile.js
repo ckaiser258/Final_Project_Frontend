@@ -221,43 +221,42 @@ class AthleteProfile extends Component {
                   togglePerformanceTable={this.togglePerformanceTable}
                   tableShowing={this.state.performanceTableShowing}
                 />
-                  <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">
-                            Modal title
-                          </h5>
-                          <button
-                            type="button"
-                            class="close"
-                            id="close-button"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <NewStatForm
-                            athlete={this.props.athleteInfo}
-                            testNames={this.uniqueTestNames}
-                            addStat={this.addStat}
-                            toggleStatForm={this.toggleStatForm}
-                            athleteUrl={this.props.athleteUrl}
-                          />
-                        </div>
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          New Stat
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          id="close-button"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <NewStatForm
+                          athlete={this.props.athleteInfo}
+                          testNames={this.uniqueTestNames}
+                          addStat={this.addStat}
+                          toggleStatForm={this.toggleStatForm}
+                          athleteUrl={this.props.athleteUrl}
+                        />
                       </div>
                     </div>
                   </div>
-                
+                </div>
               </Container>
             </Fragment>
           ) : (
@@ -267,56 +266,104 @@ class AthleteProfile extends Component {
                 toggleInjuryForm={this.toggleInjuryForm}
                 toggleInjuryTable={this.toggleInjuryTable}
               />
-                                <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">
-                            New Injury
-                          </h5>
-                          <button
-                            type="button"
-                            class="close"
-                            id="close-button"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body"></div>
-             
-                <NewInjuryForm
-                  athlete={this.props.athleteInfo}
-                  toggleInjuryForm={this.toggleInjuryForm}
-                  addInjury={this.addInjury}
-                  addStat={this.addStat}
-                />
-                      </div>
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        New Injury
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        id="close-button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
+                    <div class="modal-body"></div>
+
+                    <NewInjuryForm
+                      athlete={this.props.athleteInfo}
+                      toggleInjuryForm={this.toggleInjuryForm}
+                      addInjury={this.addInjury}
+                      addStat={this.addStat}
+                    />
                   </div>
+                </div>
+              </div>
             </Container>
           )}
         </div>
-        {this.state.injuryTableShowing === true ? (
-          <AthleteInjuryTable
-            injuries={this.state.injuries}
-            deleteInjury={this.deleteInjury}
-          />
-        ) : null}
-        {this.state.performanceTableShowing === true ? (
-          <AthletePerformanceTable
-            stats={this.state.stats}
-            deleteStat={this.deleteStat}
-          />
-        ) : null}
+        <div
+          class="modal fade"
+          id="exampleModal2"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="close"
+                  id="close-button"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <AthleteInjuryTable
+                  injuries={this.state.injuries}
+                  deleteInjury={this.deleteInjury}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          id="exampleModal3"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="close"
+                  id="close-button"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <AthletePerformanceTable
+                  stats={this.state.stats}
+                  deleteStat={this.deleteStat}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

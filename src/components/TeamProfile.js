@@ -199,12 +199,36 @@ class TeamProfile extends Component {
           )}
         </div>
 
-        {this.state.injuryTableShowing === true ? (
-          <TeamInjuryTable
-            teamInjuries={this.injuries}
-            athletes={this.props.athletes}
-          />
-        ) : null}
+        <div
+          class="modal fade"
+          id="exampleModal2"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="close"
+                  id="close-button"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <TeamInjuryTable
+                  teamInjuries={this.injuries}
+                  athletes={this.props.athletes}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
         {this.state.athletesShowing ? (
           <div>
@@ -266,7 +290,7 @@ class TeamProfile extends Component {
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                     New Athlete
+                      New Athlete
                     </h5>
                     <button
                       type="button"
