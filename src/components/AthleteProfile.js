@@ -161,14 +161,14 @@ class AthleteProfile extends Component {
     return (
       <div className="text-center" style={{ paddingRight: 100 }}>
         <Jumbotron>
-          <div className="row" >
-            <img src={this.props.athleteInfo.image} className="athlete-pic" onError={this.handleImageError}/>{" "}
-            <div style={{marginRight: "auto", marginLeft: "110"}}>
-              <Typography
-                gutterBottom
-                variant="h2"
-                component="h4"
-              >
+          <div className="row">
+            <img
+              src={this.props.athleteInfo.image}
+              className="athlete-pic"
+              onError={this.handleImageError}
+            />{" "}
+            <div style={{ marginRight: "auto", marginLeft: "110" }}>
+              <Typography gutterBottom variant="h2" component="h4">
                 {this.props.athleteInfo.first_name}{" "}
                 {this.props.athleteInfo.last_name}
               </Typography>

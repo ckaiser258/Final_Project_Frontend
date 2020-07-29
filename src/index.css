@@ -22,7 +22,8 @@ code {
 }
 
 .athlete-pic {
-  margin-left: 170px;
+  margin-left: 220px;
+  margin-right: 50px;
   max-width: 110px;
   max-height: 110px;
   border-radius: 50%;
