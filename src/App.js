@@ -3,7 +3,7 @@ import { trackPromise } from "react-promise-tracker";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
-import EditUser from "./components/forms/EditUserForm"
+import EditUser from "./components/forms/EditUserForm";
 import ProfilePage from "./components/ProfilePage";
 import TeamsContainer from "./containers/TeamsContainer";
 import TeamProfile from "./components/TeamProfile";
@@ -35,8 +35,9 @@ class App extends Component {
         },
       },
     });
-    this.fetchUser()
-    this.fetchTeams()
+    this.fetchUser();
+    this.fetchTeams();
+    this.fetchAthletes();
   };
 
   logout = () => {
@@ -91,11 +92,10 @@ class App extends Component {
   };
 
   patchUser = (user) => {
-    api.auth.editUser(user)
-    .then((res) => {
-      this.fetchUser()
-    })
-  }
+    api.auth.editUser(user).then((res) => {
+      this.fetchUser();
+    });
+  };
 
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -150,38 +150,54 @@ class App extends Component {
   // };
 
   items = [
-    { name: "home", label: "Home" },
     {
-      name: "billing",
-      label: "Billing",
-      items: [
-        { name: "statements", label: "Statements" },
-        { name: "reports", label: "Reports" },
-      ],
+      name: "home",
+      label: (
+        <i className="fas fa-home">
+          <span style={{ fontFamily: "Roboto" }}> Home</span>{" "}
+        </i>
+      ),
     },
     {
-      name: "settings",
-      label: "Settings",
-      items: [
-        { name: "profile", label: "Profile" },
-        { name: "insurance", label: "Insurance" },
-        {
-          name: "notifications",
-          label: "Notifications",
-          items: [
-            { name: "email", label: "Email" },
-            {
-              name: "desktop",
-              label: "Desktop",
-              items: [
-                { name: "schedule", label: "Schedule" },
-                { name: "frequency", label: "Frequency" },
-              ],
-            },
-            { name: "sms", label: "SMS" },
-          ],
-        },
-      ],
+      name: "teams",
+      label: (
+        <>
+          <i className="fas fa-running fa-lg"></i>
+          <span> Teams</span>
+        </>
+      ),
+      // items: [
+      //   { name: "statements", label: "Statements" },
+      //   { name: "reports", label: "Reports" },
+      // ],
+    },
+    {
+      name: "edit-profile",
+      label: (
+        <i className="fas fa-edit">
+          <span style={{ fontFamily: "Roboto" }}> Edit Profile</span>{" "}
+        </i>
+      ),
+      // items: [
+      //   { name: "profile", label: "Profile" },
+      //   { name: "insurance", label: "Insurance" },
+      //   {
+      //     name: "notifications",
+      //     label: "Notifications",
+      //     items: [
+      //       { name: "email", label: "Email" },
+      //       {
+      //         name: "desktop",
+      //         label: "Desktop",
+      //         items: [
+      //           { name: "schedule", label: "Schedule" },
+      //           { name: "frequency", label: "Frequency" },
+      //         ],
+      //       },
+      //       { name: "sms", label: "SMS" },
+      //     ],
+      //   },
+      // ],
     },
   ];
 
@@ -227,8 +243,10 @@ class App extends Component {
             gridGap: 10,
           }}
         >
-          {this.state.auth.user.id ? <Sidebar items={this.items} /> : null}
           <Router>
+            {this.state.auth.user.id ? (
+              <Sidebar items={this.items} user={this.state.auth.user} />
+            ) : null}
             <Route
               exact
               path="/create-account"
@@ -239,10 +257,16 @@ class App extends Component {
               path="/"
               render={(props) => <Login {...props} onLogin={this.login} />}
             />
-              <Route
+            <Route
               exact
-              path="/edit-account"
-              render={(props) => <EditUser {...props} currentUser={this.state.auth.user} patchUser={this.patchUser}/>}
+              path="/edit-profile"
+              render={(props) => (
+                <EditUser
+                  {...props}
+                  currentUser={this.state.auth.user}
+                  patchUser={this.patchUser}
+                />
+              )}
             />
             <Route
               exact

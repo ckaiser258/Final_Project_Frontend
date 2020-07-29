@@ -29,6 +29,7 @@ class EditUser extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.patchUser(this.state);
+    this.props.history.push("/home");
   };
 
   render() {
@@ -38,7 +39,7 @@ class EditUser extends Component {
         <div style={{ paddingRight: 100 }}>
           <Jumbotron className="text-center">
             <Typography gutterBottom variant="h2" component="h4">
-              Edit Account
+              Edit Profile
             </Typography>
           </Jumbotron>
           {this.state.error ? <h1>Try again...</h1> : null}
@@ -116,7 +117,7 @@ class EditUser extends Component {
                 type="submit"
                 style={{ marginBottom: 10 }}
               >
-                Edit Account
+                Submit
               </Button>
             </Form>
           </Container>

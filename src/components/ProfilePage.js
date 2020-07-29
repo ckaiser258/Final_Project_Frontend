@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import Typography from "@material-ui/core/Typography";
 
 class ProfilePage extends Component {
-
   render() {
     return (
       <Fragment>
