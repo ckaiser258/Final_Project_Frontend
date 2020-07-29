@@ -35,7 +35,10 @@ class Login extends Component {
     return (
       <Fragment>
         <div>
-          <Jumbotron className="text-center">
+          <Jumbotron
+            className="text-center"
+            style={{ marginBottom: 60, padding: 35 }}
+          >
             <Typography gutterBottom variant="h2" component="h4">
               <i
                 class="far fa-chart-bar fa-spin "

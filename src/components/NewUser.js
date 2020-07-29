@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { api } from "../services/api";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Jumbotron } from "react-bootstrap";
+import Typography from "@material-ui/core/Typography";
 
 class CreateAccount extends Component {
   state = {
@@ -35,7 +36,22 @@ class CreateAccount extends Component {
   render() {
     const { fields } = this.state;
     return (
+      <Fragment>
       <div>
+      <Jumbotron className="text-center" style={{padding: 35}}>
+        <Typography gutterBottom variant="h2" component="h4">
+          <i
+            class="far fa-chart-bar fa-spin "
+            style={{ marginRight: 25 }}
+          ></i>
+          Performance Mapper
+        </Typography>
+        <Typography gutterBottom variant="h5" component="h4">
+            Create an Account
+          </Typography>
+      </Jumbotron>
+    </div>
+    <Container style={{ width: 800 }}>
         {this.state.error ? <h1>Try again...</h1> : null}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
@@ -110,7 +126,8 @@ class CreateAccount extends Component {
             Create Account
           </Button>
         </Form>
-      </div>
+      </Container>
+      </Fragment>
     );
   }
 }
