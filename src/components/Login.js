@@ -33,48 +33,54 @@ class Login extends Component {
   render() {
     const { fields } = this.state;
     return (
-    //   <Fragment>
-    //     <div>
-    //   <Jumbotron>
-    //   <Typography gutterBottom variant="h2" component="h4">
-    //     Welcome to Performance Mapper
-    //   </Typography>
-    // </Jumbotron>
-    // </div>
-      <Container
-        style={{ width: 400, position: "absolute", left: "525px", top: 200 }}
-      >
-        {this.state.error ? <h1>Try again...</h1> : null}
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Username"
-              name="username"
-              value={fields.username}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+      <Fragment>
+        <div>
+          <Jumbotron className="text-center">
+            <Typography gutterBottom variant="h2" component="h4">
+              <i
+                class="far fa-chart-bar fa-spin "
+                style={{ marginRight: 25 }}
+              ></i>
+              Performance Mapper
+            </Typography>
+          </Jumbotron>
+        </div>
+        <Container style={{ width: 400 }}>
+          {this.state.error ? <h1>Try again...</h1> : null}
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Username"
+                name="username"
+                value={fields.username}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              value={fields.password}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                value={fields.password}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
 
-          <Button variant="primary" type="submit" style={{ marginBottom: 10 }}>
-            Login
-          </Button>
-        </Form>
-        Don't have an account? <Link to="/create-account">Click here.</Link>
-      </Container>
-      // </Fragment>
+            <Button
+              variant="primary"
+              type="submit"
+              style={{ marginBottom: 10 }}
+            >
+              Login
+            </Button>
+          </Form>
+          Don't have an account? <Link to="/create-account">Click here.</Link>
+        </Container>
+      </Fragment>
     );
   }
 }

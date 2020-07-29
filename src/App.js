@@ -234,29 +234,29 @@ class App extends Component {
             ) : null}
           </Navbar>
         </div>
-        <div
-          className={this.classes.root}
-          style={{
-            paddingTop: 25,
-            display: "grid",
-            gridTemplateColumns: "1fr 4fr",
-            gridGap: 10,
-          }}
-        >
-          <Router>
+        <Router>
+          <Route
+            exact
+            path="/create-account"
+            render={(props) => <NewUser {...props} onCreate={this.login} />}
+          />
+          <Route
+            exact
+            path="/"
+            render={(props) => <Login {...props} onLogin={this.login} />}
+          />
+          <div
+            className={this.classes.root}
+            style={{
+              paddingTop: 25,
+              display: "grid",
+              gridTemplateColumns: "1fr 4fr",
+              gridGap: 10,
+            }}
+          >
             {this.state.auth.user.id ? (
               <Sidebar items={this.items} user={this.state.auth.user} />
             ) : null}
-            <Route
-              exact
-              path="/create-account"
-              render={(props) => <NewUser {...props} onCreate={this.login} />}
-            />
-            <Route
-              exact
-              path="/"
-              render={(props) => <Login {...props} onLogin={this.login} />}
-            />
             <Route
               exact
               path="/edit-profile"
@@ -333,8 +333,8 @@ class App extends Component {
                 />
               );
             })}
-          </Router>
-        </div>
+          </div>
+        </Router>
       </Fragment>
     );
   }
