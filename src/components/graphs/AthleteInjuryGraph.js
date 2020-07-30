@@ -79,7 +79,7 @@ const AthleteInjuryGraph = (props) => {
           onClick={props.toggleInjuryForm}
           style={({ marginTop: 50 }, { marginBottom: 10 })}
           data-toggle="modal"
-          data-target="#exampleModal2"
+          data-target="#exampleModal"
         >
           Add Injury
         </Button>

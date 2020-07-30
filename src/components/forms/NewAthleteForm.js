@@ -25,7 +25,7 @@ class NewAthleteForm extends Component {
     e.preventDefault();
     this.props.addAthlete(this.state);
     this.props.history.push(`/team/${this.props.teamId}`);
-    document.getElementById("close-button").click()
+    document.getElementById("close-button2").click()
   };
 
   render() {

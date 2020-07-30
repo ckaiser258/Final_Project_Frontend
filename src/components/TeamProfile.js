@@ -28,6 +28,25 @@ class TeamProfile extends Component {
     injuryTableShowing: false,
   };
 
+  // fetchInjuries = () => {
+  //   api.performance.getInjuries().then((data) => {
+  //     this.setState(
+  //       {
+  //         injuries: data.filter((injury) => {
+  //           return injury.athlete_id === this.props.athleteInfo.id;
+  //         }),
+  //       },
+  //       () => console.log(this.state.injuries)
+  //     );
+  //   });
+  // };
+
+  // deleteInjury = (injury) => {
+  //   api.performance.deleteInjury(injury).then((res) => {
+  //     this.fetchInjuries();
+  //   });
+  // };
+
   handleImageError = (e) => {
     e.target.src =
       "https://s3-us-west-2.amazonaws.com/sportshub2-uploads-prod/files/sites/307/2020/06/26000313/sport.png";
@@ -235,6 +254,7 @@ class TeamProfile extends Component {
               </div>
               <div class="modal-body">
                 <TeamInjuryTable
+                  // deleteInjury={this.deleteInjury}
                   teamInjuries={this.injuries}
                   athletes={this.props.athletes}
                 />
@@ -308,7 +328,7 @@ class TeamProfile extends Component {
                     <button
                       type="button"
                       class="close"
-                      id="close-button"
+                      id="close-button2"
                       data-dismiss="modal"
                       aria-label="Close"
                     >

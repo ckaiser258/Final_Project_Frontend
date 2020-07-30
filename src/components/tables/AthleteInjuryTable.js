@@ -91,7 +91,7 @@ export default function AthleteInjuryTable(props) {
                   <TableCell align="right">{injury.date}</TableCell>
                   <TableCell align="right">{injury.description}</TableCell>
                   <TableCell align="right">
-                    <Button
+                    {props.teamInjuries ? null : <Button
                       onClick={() => {
                         handleDelete(injury);
                       }}
@@ -99,7 +99,7 @@ export default function AthleteInjuryTable(props) {
                       size="sm"
                     >
                       X
-                    </Button>{" "}
+                    </Button>}
                   </TableCell>
                 </TableRow>
               );
