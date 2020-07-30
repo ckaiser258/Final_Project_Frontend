@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { api } from "../services/api";
-import AthletePerformanceGraph from "./Graphs.js/AthletePerformanceGraph";
-import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
+import AthletePerformanceGraph from "./graphs/AthletePerformanceGraph";
+import AthleteInjuryGraph from "./graphs/AthleteInjuryGraph";
 import NewStatForm from "./forms/NewStatForm";
 import NewInjuryForm from "./forms/NewInjuryForm";
 import AthleteInjuryTable from "./tables/AthleteInjuryTable";

@@ -1,13 +1,14 @@
 // This component doubles as a team page as well as an AthletesContainer since athletes are sorted by team
 
 import React, { Component, Fragment } from "react";
+import { api } from "../services/api"
 import AthleteCard from "./AthleteCard";
 import { Route, NavLink } from "react-router-dom";
 import NewAthleteForm from "./forms/NewAthleteForm";
 // import NewStatForm from "./forms/NewStatForm";
 // import NewInjuryForm from "./forms/NewInjuryForm";
-import AthletePerformanceGraph from "./Graphs.js/AthletePerformanceGraph";
-import AthleteInjuryGraph from "./Graphs.js/AthleteInjuryGraph";
+import AthletePerformanceGraph from "./graphs/AthletePerformanceGraph";
+import AthleteInjuryGraph from "./graphs/AthleteInjuryGraph";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import { Paper, Grid, Typography } from "@material-ui/core";
 import Button from "react-bootstrap/Button";
