@@ -38,7 +38,7 @@ class CreateAccount extends Component {
     return (
       <Fragment>
         <div>
-          <Jumbotron className="text-center" style={{ padding: 35 }}>
+          <Jumbotron className="text-center" style={{ padding: 35, backgroundColor: "#F5E100" }}>
             <Typography gutterBottom variant="h2" component="h4">
               <i
                 class="far fa-chart-bar fa-spin "
