@@ -33,7 +33,7 @@ const AthleteCard = (props) => {
       <div style={{ paddingTop: 50 }}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
-            <Card style={{ maxWidth: 345 }}>
+            <Card style={{ width: 187 }}>
               <Link
                 key={props.athleteInfo.id}
                 to={`/${props.athleteInfo.id}/${athleteUrl}`}
