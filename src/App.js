@@ -218,7 +218,7 @@ class App extends Component {
     return (
       <Fragment>
         <div>
-          <Navbar style={{backgroundColor: "#e3e3e3"}}>
+          <Navbar style={{backgroundColor: "#EAECEF"}}>
             <i class="far fa-chart-bar fa-lg" style={{ marginRight: 7 }}></i>
             <Navbar.Brand href={this.state.auth.user.id ? "/home" : "/"}>
               Performance Mapper
