@@ -292,7 +292,7 @@ class TeamProfile extends Component {
                   >
                     <Paper
                       elevation={3}
-                      style={{ borderRadius: "50%", marginTop: 20 }}
+                      style={{ borderRadius: "50%", marginTop: 20, marginBottom: 10 }}
                     >
                       <img
                         style={{
