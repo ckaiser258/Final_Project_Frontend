@@ -37,11 +37,11 @@ class Login extends Component {
         <div>
           <Jumbotron
             className="text-center"
-            style={{ marginBottom: 60, padding: 35 }}
+            style={{ marginBottom: 60, padding: 35, backgroundColor: "#F5E100" }}
           >
             <Typography gutterBottom variant="h2" component="h4">
               <i
-                class="far fa-chart-bar fa-spin "
+                class="fa fa-spinner fa-spin fa-fw"
                 style={{ marginRight: 25 }}
               ></i>
               Performance Mapper
