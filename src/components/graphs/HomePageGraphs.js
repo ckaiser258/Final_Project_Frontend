@@ -136,6 +136,13 @@ const HomePageGraphs = (props) => {
       height={350}
       width={400}
       options={{
+        scales: {
+          xAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      },
         maintainAspectRatio: false,
         title: {
           display: true,
