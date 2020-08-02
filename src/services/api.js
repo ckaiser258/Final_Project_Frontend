@@ -1,4 +1,4 @@
-const API_ROOT = `http://localhost:3000/api/v1`
+const API_ROOT = `https://immense-plains-60956.herokuapp.com`
 
 const token = () => localStorage.getItem("token")
 
