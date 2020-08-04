@@ -56,8 +56,12 @@ class AthleteProfile extends Component {
 
   addStat = (stat) => {
     api.performance.createStat(stat).then((res) => {
+      if (this.props.athleteInfo.stats.length) {
       this.props.fetchTeams()
       this.fetchStats();
+      } else {
+        window.location.reload()
+      }
     });
   };
 

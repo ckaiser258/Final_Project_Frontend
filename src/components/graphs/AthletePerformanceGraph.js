@@ -96,7 +96,7 @@ const AthletePerformanceGraph = (props) => {
             title: {
               display: true,
               text: `${
-                props.testName ? `${props.testName}` : "No Data Available (After submitting your first stat, refresh the page)"
+                props.testName ? `${props.testName}` : "No Data Available"
               }`,
               maintainAspectRatio: false,
               fontSize: 20,
