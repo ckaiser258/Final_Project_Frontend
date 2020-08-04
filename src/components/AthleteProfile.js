@@ -63,6 +63,7 @@ class AthleteProfile extends Component {
   addInjury = (injury) => {
     api.performance.createInjury(injury).then((res) => {
       this.fetchInjuries();
+      this.props.fetchTeams()
     });
   };
 
