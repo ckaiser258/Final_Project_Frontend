@@ -57,7 +57,7 @@ class NewStatForm extends Component {
                 value={this.state.test_name}
                 onChange={this.handleChange}
               >
-                <option disabled>-- Choose From Past Tests --</option>
+                <option defaultValue>-- Choose From Past Tests --</option>
                 {this.props.testNames.map((testName) => {
                   return <option key={testName}>{testName}</option>;
                 })}
