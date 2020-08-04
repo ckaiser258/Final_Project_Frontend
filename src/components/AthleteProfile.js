@@ -56,6 +56,7 @@ class AthleteProfile extends Component {
 
   addStat = (stat) => {
     api.performance.createStat(stat).then((res) => {
+      this.props.fetchTeams()
       this.fetchStats();
     });
   };
@@ -70,12 +71,14 @@ class AthleteProfile extends Component {
   deleteStat = (stat) => {
     api.performance.deleteStat(stat).then((res) => {
       this.fetchStats();
+      this.props.fetchTeams()
     });
   };
 
   deleteInjury = (injury) => {
     api.performance.deleteInjury(injury).then((res) => {
       this.fetchInjuries();
+      this.props.fetchTeams()
     });
   };
 
