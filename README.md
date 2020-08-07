@@ -12,6 +12,7 @@ The backend of the application leverages Ruby on Rails API functionality to rece
 * Node Package Manager (NPM)
 * ReactJS
 * React Router
+* React ChartJS 2
 * React Bootstrap
 * Material UI
 * Developed on Google Chrome (80.0.3987.149)
