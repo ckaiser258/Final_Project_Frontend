@@ -4,6 +4,8 @@
 ### Description: 
 This project was designed to enable strength and conditioning coaches to to record, monitor, and track their teams'/athletes' performance statistics and injuries, as well as visualize key trends in data across their teams and athletes. Key features are as follows:
 
+
+
 * User Login and Homepage with horizontal bar chart of cumulative injuries across teams.
 
 ![Login and Home Page](README_assets/login_and_home_page.gif)
@@ -20,7 +22,7 @@ This project was designed to enable strength and conditioning coaches to to reco
 
 ![Team Injuries](README_assets/view_team_injuries.gif)
 
-* View athletes across the team, and add/delete athletes.Broken images get fixed with an automatic default image.
+* View athletes across the team, and add/delete athletes. Broken images get fixed with an automatic default image.
 
 ![View and Add Athletes on a Team](README_assets/view_and_add_team_athletes.gif)
 
@@ -36,9 +38,11 @@ This project was designed to enable strength and conditioning coaches to to reco
 
 ![Add and Delete Stats](README_assets/add_and_delete_stats.gif)
 
+
 * Add and delete injuries. Graph will dynamically update as injuries are added/deleted. Each injury is automatically added or removed from the team and home charts.
 
 ![Add and Delete Injuries](README_assets/add_and_delete_injuries.gif)
+
 
 
 The backend of the application leverages Ruby on Rails API functionality to receive and send AJAX requests in a JSON formate. The interactive frontend is build on ReactJS, HTML, and CSS.
