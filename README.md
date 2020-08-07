@@ -5,6 +5,7 @@
 This project was designed to enable strength and conditioning coaches to to record, monitor, and track their teams'/athletes' performance statistics and injuries, as well as visualize key trends in data across their teams and athletes. Key features are as follows:
 
 
+
 * User Login and Homepage with horizontal bar chart of cumulative injuries across teams.
 
 ![Login and Home Page](README_assets/login_and_home_page.gif)
