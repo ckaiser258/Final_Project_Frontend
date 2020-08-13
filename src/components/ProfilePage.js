@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { api } from "../services/api";
 import HomePageGraphsContainer from "../containers/HomePageGraphsContainer";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
@@ -17,7 +18,7 @@ class ProfilePage extends Component {
           </Jumbotron>
           <HomePageGraphsContainer teams={this.props.teams} />
           <Link to="/teams">
-            <Button style={{ marginTop: 15 }}>View All Teams</Button>
+            <Button onClick={this.props.fetchTeams} style={{ marginTop: 15 }}>View All Teams</Button>
           </Link>
         </div>
       </Fragment>
