@@ -14,7 +14,7 @@ This project was designed to enable strength and conditioning coaches to to reco
 
 ![View and Add Teams](README_assets/view_and_add_teams_with_default_image.gif)
 
-* View average stats and trends of performance measures, sorted by date and separated by test in individual tabs.
+* View average stats and trends of performance measures across a team, sorted by date and separated by test in individual tabs.
 
 ![Team Performance Stats](README_assets/view_team_performance_stats.gif)
 
