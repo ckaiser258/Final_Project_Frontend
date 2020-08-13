@@ -58,23 +58,28 @@ The backend of the application leverages Ruby on Rails API functionality to rece
 * Developed on Google Chrome (80.0.3987.149)
 
 ### Server Dependencies
-Refer to the backend repo at https://github.com/ckaiser258/Final_Project_Backend for instructions to set up the backend server and PostGreSQL.
+The backend (and frontend) of this app is hosted, so, like this repo, the backend repo is not necessary for use. However, if you'd like to run the server locally, refer to the backend repo at https://github.com/ckaiser258/Final_Project_Backend for instructions to set up the backend server and PostGreSQL.
 
 ### Installation:
 
-Download this entire git repository to your computer and place in your desired install directory. 
+1. Download this entire git repository to your computer and place in your desired install directory. 
 
-If you don't have the above dependencies:
+2. If you don't have the above dependencies:
 
-First, if you do not currently have Node Package Manager (NPM), follow their guide here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm.
+   * If you do not currently have Node Package Manager (NPM), follow their guide here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm.
 
-Next, to install ReactJS, React Bootstrap, and React Router, in a terminal navigate to the directory in which you installed this repo, then execute `npm install react react-dom --save`. Then, run `npm install webpack webpack-dev-server webpack-cli --save`, `npm install react-bootstrap bootstrap`, and `npm install --save react-router-dom`
+   * To install ReactJS, React Bootstrap, and React Router, in a terminal navigate to the directory in which you installed this repo, then execute `npm install react react-dom --save`. After this, run `npm install webpack webpack-dev-server webpack-cli --save`, `npm install react-bootstrap bootstrap`, and `npm install --save react-router-dom`
 
-Finally, execute ```npm install``` to install all other required node packages.
+3. Execute ```npm install``` to install all other required node packages.
 
 
 ### Running:
-This project was designed as a proof of concept so it requires hosting locally. To start hosting the local server navigate to the directory in which this repo was installed. Then, via a terminal interface execute ```npm start```. If you started your rails server before this you will be prompted to enter Y/N to use an unoccupied port. Enter `y` and after a moment your browser should automatically load the application. At this point the application will load and all functionality should be available.
+
+This app is hosted at https://performancemapper.herokuapp.com/. However, if you'd like to run the app locally, you can follow the instructions below (given you've installed and started the backend repo as noted above.):
+
+1. Navigate to the directory in which this repo was installed. 
+
+2. Via a terminal interface, execute ```npm run dev```. If you started your rails server before this you will be prompted to enter Y/N to use an unoccupied port. Enter `y` and after a moment your browser should automatically load the application. At this point the application will load and all functionality should be available.
 
 ### License
 Copyright 2020 Colton Kaiser
