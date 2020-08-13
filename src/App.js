@@ -279,7 +279,6 @@ class App extends Component {
                   {...props}
                   userInfo={this.state.auth.user}
                   teams={this.state.teams}
-                  fetchTeams={this.fetchTeams}
                 />
               )}
             />

@@ -18,7 +18,7 @@ class ProfilePage extends Component {
           </Jumbotron>
           <HomePageGraphsContainer teams={this.props.teams} />
           <Link to="/teams">
-            <Button onClick={this.props.fetchTeams} style={{ marginTop: 15 }}>View All Teams</Button>
+            <Button style={{ marginTop: 15 }}>View All Teams</Button>
           </Link>
         </div>
       </Fragment>
