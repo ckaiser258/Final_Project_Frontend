@@ -7,21 +7,9 @@ import { Paper, Grid, Typography } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 class TeamsContainer extends Component {
-  state = {
-    successAlertShowing: false,
-  };
-
-  showSuccessAlert = () => {
-    this.setState({
-      ...this.state,
-      successAlertShowing: true,
-    });
-  };
 
   render() {
     return (
-      // this.state.successAlertShowing ?
-      // (<Alert severity="error">This is an error alert — check it out!</Alert>) : (null),
       <div className="text-center" style={{ paddingRight: 100 }}>
         <Jumbotron>
           <Typography gutterBottom variant="h2" component="h4">
@@ -112,3 +100,17 @@ class TeamsContainer extends Component {
 }
 
 export default TeamsContainer;
+
+  // state = {
+  //   successAlertShowing: false,
+  // };
+
+  // showSuccessAlert = () => {
+  //   this.setState({
+  //     ...this.state,
+  //     successAlertShowing: true,
+  //   });
+  // };
+
+      // this.state.successAlertShowing ?
+      // (<Alert severity="error">This is an error alert — check it out!</Alert>) : (null),
