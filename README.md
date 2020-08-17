@@ -57,6 +57,8 @@ The backend of the application leverages Ruby on Rails API functionality to rece
 * Material UI
 * Developed on Google Chrome (80.0.3987.149)
 
+Live demo located here: https://performancemapper.herokuapp.com/
+
 ### Server Dependencies
 The backend (and frontend) of this app is hosted, so, like this repo, the backend repo is not necessary for use. However, if you'd like to run the server locally, refer to the backend repo at https://github.com/ckaiser258/Final_Project_Backend for instructions to set up the backend server and PostGreSQL.
 
