@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Typography from "@material-ui/core/Typography";
+import TypeIt from "typeit-react";
 
 class Login extends Component {
   state = {
@@ -37,14 +38,34 @@ class Login extends Component {
         <div>
           <Jumbotron
             className="text-center"
-            style={{ marginBottom: 60, padding: 35, backgroundColor: "#F5E100" }}
+            style={{
+              marginBottom: 60,
+              padding: 45,
+              backgroundColor: "#F5E100",
+            }}
           >
             <Typography gutterBottom variant="h2" component="h4">
-              <i
+              <TypeIt
+                getBeforeInit={(instance) => {
+                  instance
+                    .type("Weclom")
+                    .pause(150)
+                    .move(-2)
+                    .delete(2)
+                    .type("lc")
+                    .move(5)
+                    .type("e")
+                    .type(" to <em><strong>Performance Mapper</strong></em>")
+                    .go();
+                  return instance;
+                }}
+              />
+
+              {/* <i
                 class="fa fa-spinner fa-spin fa-fw"
                 style={{ marginRight: 25 }}
-              ></i>
-              Performance Mapper
+              ></i> */}
+              {/* Welcome To <strong>Performance Mapper</strong> */}
             </Typography>
           </Jumbotron>
         </div>
