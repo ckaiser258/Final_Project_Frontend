@@ -60,12 +60,10 @@ class Login extends Component {
                   return instance;
                 }}
               />
-
               {/* <i
                 class="fa fa-spinner fa-spin fa-fw"
                 style={{ marginRight: 25 }}
               ></i> */}
-              {/* Welcome To <strong>Performance Mapper</strong> */}
             </Typography>
           </Jumbotron>
         </div>
