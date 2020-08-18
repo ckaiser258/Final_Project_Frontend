@@ -25,7 +25,7 @@ class NewAthleteForm extends Component {
     e.preventDefault();
     this.props.addAthlete(this.state);
     this.props.history.push(`/team/${this.props.teamId}`);
-    document.getElementById("close-button2").click()
+    document.getElementById("close-button2").click();
   };
 
   render() {
@@ -65,9 +65,7 @@ class NewAthleteForm extends Component {
                 value={this.state.year}
                 onChange={this.handleChange}
               >
-                <option disabled defaultValue>
-                  -- Select a Year --
-                </option>
+                <option>-- Select a Year --</option>
                 <option>Freshman</option>
                 <option>Sophomore</option>
                 <option>Junior</option>
