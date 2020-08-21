@@ -178,9 +178,9 @@ class App extends Component {
           <span style={{ fontFamily: "Roboto" }}> Edit Profile</span>{" "}
         </i>
       ),
-      items: this.state.teams.map(team => {
-        return {name: `/team/${team.id}`, label: team.name} //not working
-      })
+      items: this.state.teams.map((team) => {
+        return { name: `/team/${team.id}`, label: team.name }; //not working
+      }),
       //  [
       //   { name: "profile", label: "Profile" },
       //   { name: "insurance", label: "Insurance" },
@@ -218,7 +218,7 @@ class App extends Component {
     return (
       <Fragment>
         <div>
-          <Navbar style={{backgroundColor: "#EAECEF"}}>
+          <Navbar style={{ backgroundColor: "#EAECEF" }}>
             <i class="far fa-chart-bar fa-lg" style={{ marginRight: 7 }}></i>
             <Navbar.Brand href={this.state.auth.user.id ? "/home" : "/"}>
               Performance Mapper

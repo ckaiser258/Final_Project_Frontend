@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Typography from "@material-ui/core/Typography";
 import TypeIt from "typeit-react";
+import ReactLoading from "react-loading";
 
 class Login extends Component {
   state = {
@@ -15,6 +16,7 @@ class Login extends Component {
       username: "",
       password: "",
     },
+    isLoading: false,
   };
 
   handleChange = (e) => {
@@ -24,15 +26,33 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target.username.value && e.target.password.value) {
+      this.setState({
+        isLoading: true,
+      });
+    }
     api.auth.login(this.state.fields).then((res) => {
       this.props.onLogin(res);
       this.props.history.push("/home");
       console.log(res);
+    })
+    .then(res => {
+      this.setState({
+        isLoading: false
+      })
     });
   };
 
   render() {
     const { fields } = this.state;
+    const loading = this.state.isLoading;
+    if (loading) {
+      return (
+        <div className="loader">
+          <ReactLoading type={"bars"} color={"grey"} /> Retrieving User
+        </div>
+      );
+    }
     return (
       <Fragment>
         <div>
