@@ -31,16 +31,18 @@ class Login extends Component {
         isLoading: true,
       });
     }
-    api.auth.login(this.state.fields).then((res) => {
-      this.props.onLogin(res);
-      this.props.history.push("/home");
-      console.log(res);
-    })
-    .then(res => {
-      this.setState({
-        isLoading: false
+    api.auth
+      .login(this.state.fields)
+      .then((res) => {
+        this.props.onLogin(res);
+        this.props.history.push("/home");
+        console.log(res);
       })
-    });
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+        });
+      });
   };
 
   render() {
@@ -48,8 +50,15 @@ class Login extends Component {
     const loading = this.state.isLoading;
     if (loading) {
       return (
-        <div className="loader">
-          <ReactLoading type={"bars"} color={"grey"} /> Retrieving User
+        <div className="loader center-screen">
+          <ReactLoading
+            type={"bars"}
+            color={"grey"}
+            style={{ width: "105px", fill: "grey", marginLeft: "46%" }}
+          />
+          <Typography gutterBottom variant="h4" component="h4">
+            <TypeIt>Getting Your Data</TypeIt>
+          </Typography>
         </div>
       );
     }

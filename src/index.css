@@ -36,3 +36,11 @@ code {
   height: 112px;
   border-radius: 50%;
 }
+
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+}
