@@ -45,6 +45,18 @@ class Login extends Component {
       });
   };
 
+  text = "Getting Your Data"
+
+  // componentDidUpdate() {
+  //       setTimeout(() => {
+  //       this.text = "Almost There..."
+  //       console.log(this.text)
+  // }, 10000)} //Not currently working
+
+  // componentWillUnmount() {
+  //   clearTimeout()
+  // }
+
   render() {
     const { fields } = this.state;
     const loading = this.state.isLoading;
@@ -57,7 +69,7 @@ class Login extends Component {
             style={{ width: "105px", fill: "grey", marginLeft: "46%" }}
           />
           <Typography gutterBottom variant="h4" component="h4">
-            <TypeIt>Getting Your Data</TypeIt>
+            <TypeIt>{this.text}</TypeIt>
           </Typography>
         </div>
       );

@@ -16,7 +16,9 @@ class ProfilePage extends Component {
               Hello, Coach {this.props.userInfo.last_name}
             </Typography>
           </Jumbotron>
+          <div style={{position: "relative"}}>
           <HomePageGraphsContainer teams={this.props.teams} />
+          </div>
           <Link to="/teams">
             <Button style={{ marginTop: 15 }}>View All Teams</Button>
           </Link>
