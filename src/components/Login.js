@@ -92,25 +92,12 @@ class Login extends Component {
             }}
           >
             <Typography gutterBottom variant="h2" component="h4">
-              <TypeIt
-                getBeforeInit={(instance) => {
-                  instance
-                    .type("Weclom")
-                    .pause(150)
-                    .move(-2)
-                    .delete(2)
-                    .type("lc")
-                    .move(5)
-                    .type("e")
-                    .type(" to <em><strong>Performance Mapper</strong></em>")
-                    .go();
-                  return instance;
-                }}
-              />
-              {/* <i
-                class="fa fa-spinner fa-spin fa-fw"
-                style={{ marginRight: 25 }}
-              ></i> */}
+              <TypeIt>
+                Welcome To{" "}
+                <em>
+                  <strong>Performance Mapper</strong>
+                </em>
+              </TypeIt>
             </Typography>
           </Jumbotron>
         </div>
