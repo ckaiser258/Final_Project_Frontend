@@ -31,6 +31,12 @@ class Login extends Component {
         isLoading: true,
       });
     }
+    this.setState({
+      fields: {
+        username: "",
+        password: ""
+      }
+    })
     api.auth
       .login(this.state.fields)
       .then((res) => {
