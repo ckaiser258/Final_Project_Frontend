@@ -45,7 +45,7 @@ class Login extends Component {
       });
   };
 
-  text = "Getting Your Data"
+  text = "Getting Your Data";
 
   // componentDidUpdate() {
   //       setTimeout(() => {
@@ -141,8 +141,17 @@ class Login extends Component {
               Login
             </Button>
           </Form>
-          Don't have an account? <Link to="/create-account">Click here.</Link>
+          Don't have an account? <Link to="/create-account">Click here.</Link>{" "}
         </Container>
+        <br />
+        <p className="text-center">
+          <small>
+            <strong>
+              (For long-term user experience: <em>Username: user</em>,{" "}
+              <em>Password: 12345</em>)
+            </strong>
+          </small>
+        </p>
       </Fragment>
     );
   }
