@@ -24,36 +24,56 @@ class Login extends Component {
     this.setState({ fields: newFields });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    if (e.target.username.value && e.target.password.value) {
-      this.setState({
-        isLoading: true,
-      });
-    }
+  clearForm = () => {
     this.setState({
       fields: {
         username: "",
-        password: ""
-      }
-    })
+        password: "",
+      },
+    });
+  };
+
+  login = (res) => {
+    this.props.onLogin(res);
+    this.props.history.push("/home");
+  };
+
+  startLoadingPage = () => {
+    this.setState({
+      isLoading: true,
+    });
+  };
+
+  exitLoadingPage = () => {
+    this.setState({
+      isLoading: false,
+    });
+  };
+
+  throwError = () => {
+    this.setState({
+      ...this.state,
+      error: true,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (e.target.username.value && e.target.password.value) {
+      this.startLoadingPage();
+    }
+    this.clearForm();
     api.auth
       .login(this.state.fields)
       .then((res) => {
         if (!res.message) {
-          this.props.onLogin(res);
-          this.props.history.push("/home");
+          this.login(res);
         } else {
-          this.setState({
-            ...this.state,
-            error: true,
-          });
+          this.throwError();
         }
       })
       .then((res) => {
-        this.setState({
-          isLoading: false,
-        });
+        this.exitLoadingPage();
       });
   };
 
