@@ -45,6 +45,7 @@ const login = data => {
         body: JSON.stringify({"user": data})
     })
     .then(res => res.json())
+    // .catch(error => alert(error.message))
 }
 
 const getCurrentUser = () => {

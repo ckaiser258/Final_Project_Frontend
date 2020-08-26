@@ -34,9 +34,15 @@ class Login extends Component {
     api.auth
       .login(this.state.fields)
       .then((res) => {
-        this.props.onLogin(res);
-        this.props.history.push("/home");
-        console.log(res);
+        if (!res.message) {
+          this.props.onLogin(res);
+          this.props.history.push("/home");
+        } else {
+          this.setState({
+            ...this.state,
+            error: true,
+          });
+        }
       })
       .then((res) => {
         this.setState({
@@ -109,7 +115,16 @@ class Login extends Component {
           </Jumbotron>
         </div>
         <Container style={{ width: 400 }}>
-          {this.state.error ? <h1>Try again...</h1> : null}
+          {this.state.error ? (
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h5"
+              style={{ color: "red", marginBottom: "2%" }}
+            >
+              Please Try Again...
+            </Typography>
+          ) : null}
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Label>Username</Form.Label>
