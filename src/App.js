@@ -119,18 +119,6 @@ class App extends Component {
     });
   };
 
-  // addStat = (stat) => {
-  //   api.performance.createStat(stat).then((res) => {
-  //     this.fetchTeams();
-  //   });
-  // };
-
-  // addInjury = (injury) => {
-  //   api.performance.createInjury(injury).then((res) => {
-  //     this.fetchTeams();
-  //   });
-  // };
-
   deleteTeam = (team) => {
     api.teams.deleteTeam(team).then((res) => {
       this.fetchTeams();
@@ -142,12 +130,6 @@ class App extends Component {
       this.fetchTeams();
     });
   };
-
-  // deleteStat = (stat) => {
-  //   api.performance.deleteStat(stat).then((res) => {
-  //     this.fetchTeams();
-  //   });
-  // };
 
   items = [
     {
@@ -166,10 +148,6 @@ class App extends Component {
           <span> Teams</span>
         </>
       ),
-      // items: [
-      //   { name: "statements", label: "Statements" },
-      //   { name: "reports", label: "Reports" },
-      // ],
     },
     {
       name: "edit-profile",
@@ -181,26 +159,6 @@ class App extends Component {
       items: this.state.teams.map((team) => {
         return { name: `/team/${team.id}`, label: team.name }; //not working
       }),
-      //  [
-      //   { name: "profile", label: "Profile" },
-      //   { name: "insurance", label: "Insurance" },
-      //   {
-      //     name: "notifications",
-      //     label: "Notifications",
-      //     items: [
-      //       { name: "email", label: "Email" },
-      //       {
-      //         name: "desktop",
-      //         label: "Desktop",
-      //         items: [
-      //           { name: "schedule", label: "Schedule" },
-      //           { name: "frequency", label: "Frequency" },
-      //         ],
-      //       },
-      //       { name: "sms", label: "SMS" },
-      //     ],
-      //   },
-      // ],
     },
   ];
 
