@@ -18,7 +18,6 @@ class CreateAccount extends Component {
   handleChange = (e) => {
     const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
     this.setState({ fields: newFields });
-    console.log(this.state.fields);
   };
 
   handleSubmit = (e) => {
@@ -28,7 +27,6 @@ class CreateAccount extends Component {
       .then((res) => {
         this.props.onCreate(res);
         this.props.history.push("/");
-        console.log(res);
       })
       .catch((error) => alert(error.message));
   };
